@@ -1,0 +1,118 @@
+/* --------------------------------------
+------------------ Body ------------------
+----------------------------------------- */
+
+#body {
+    -fx-background-color: #fff;
+}
+
+.bg-white {
+    -fx-background-color: #fff;
+}
+
+.root
+{
+    -fx-background-color:#fff;
+}
+
+/* --------------------------------------
+------------- Menu Styles ---------------
+----------------------------------------- */
+
+.menu-btn {
+    -fx-background-color: blue;
+    -fx-background: none;
+}
+
+.menu-btn {
+	-fx-background-color: none;
+	-fx-cursor:pointer;
+	-fx-font-size: 17px;
+    -fx-padding: 15px 0px;
+    -fx-text-decoration:none;
+}
+
+.menu-btn:hover {
+    -fx-border-bottom: 45;
+    -fx-border-width: 0 0 3 0; 
+    -fx-border-color: #1d97c1;
+}
+.menu-btn:active {
+	-fx-position:relative;
+	-fx-top:1px;
+}
+
+/* --------------------------------------
+---------------- Forms ------------------
+----------------------------------------- */
+
+.button-style {
+	-fx-background-color:#1d98c1;
+	-fx-border-radius:8px;
+	-fx-text-fill:#ffffff;
+	-fx-font-size:12px;
+	-fx-padding: 8px 8px;
+	-fx-text-decoration:none;
+}
+.button-style:hover {
+	-fx-background-color:#53c6f0;
+}   
+
+/* ------ TextField ------ */
+
+.text-field {
+    -fx-background-color: #a9a9a9 , white;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+
+.text-field:focused {
+    -fx-background-color: #1d97c1 , white;
+}
+
+/* ------ RadioButton ------ */
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 2px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 6px;
+}
+
+/* ------ CheckBox ------ */
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color:grey;
+    -fx-border-radius:3px;
+}
+    
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+    
+.check-box:selected .box { 
+    -fx-background-color: #53c7f0;
+}
