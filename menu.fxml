@@ -30,7 +30,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button alignment="CENTER" layoutX="288.0" layoutY="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="80.0" styleClass="menu-btn" text="TIENDA" fx:id="tiendaBtn" >
+            <Button alignment="CENTER" layoutX="288.0" layoutY="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="80.0" styleClass="menu-btn" text="TIENDA" fx:id="tiendaBtn"  onAction="#tiendaInit">
                <HBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>
@@ -41,7 +41,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button alignment="CENTER" layoutX="340.0" layoutY="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="129.0" styleClass="menu-btn" text="ESTADISTICAS">
+            <Button alignment="CENTER" layoutX="340.0" layoutY="10.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="129.0" styleClass="menu-btn" text="ESTADISTICAS" onAction="#estadisticasInit">
                <HBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>
@@ -49,7 +49,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button alignment="CENTER" layoutX="392.0" layoutY="10.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="85.0" styleClass="menu-btn" text="AJUSTES">
+            <Button alignment="CENTER" layoutX="392.0" layoutY="10.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="85.0" styleClass="menu-btn" text="AJUSTES" onAction="#ajustesInit">
                <HBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>
