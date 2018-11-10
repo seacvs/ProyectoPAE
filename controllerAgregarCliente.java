@@ -18,16 +18,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class controllerMenu implements Initializable {
+public class controllerAgregarCliente implements Initializable {
 	
-	@FXML private Button gymBtn;
-	@FXML private Button estBtn;
-	@FXML private Button ajustesBtn;
-	@FXML private Button tiendaBtn;
+	@FXML private Button listoBtn;
+	@FXML private Button cancelarBtn;
 
 	
-	
-	public controllerMenu() {
+	public controllerAgregarCliente() {
 		super();
 	}
 
@@ -36,7 +33,7 @@ public class controllerMenu implements Initializable {
 	}
 	
 	@FXML 
-	private void gymInit(){
+	private void cancelar(){
 		HBox listado = null;
 		try {
 			listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
@@ -48,41 +45,16 @@ public class controllerMenu implements Initializable {
 	}
 	
 	@FXML 
-	private void tiendaInit(){
-		HBox ventas = null;
-		try {
-			ventas = FXMLLoader.load(getClass().getResource("puntoVenta.fxml"));
-			ameyalli.getInstance().setCenter(ventas);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-	}
-	@FXML 
-	private void estadisticasInit(){
-		Node estadisticas = null;
-		try {
-			estadisticas = FXMLLoader.load(getClass().getResource("estadisticas.fxml"));
-			ameyalli.getInstance().setCenter(estadisticas);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-	}
-	@FXML 
-	private void ajustesInit(){
+	private void listo(){
 		HBox listado = null;
 		try {
-			listado = FXMLLoader.load(getClass().getResource("ajustes.fxml"));
+			listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			ameyalli.getInstance().setCenter(listado);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
 	}
-	
-	
-
 	
 	
 }

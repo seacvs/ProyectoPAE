@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="897.0" prefWidth="1343.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerAgregarCliente">
+<HBox prefHeight="897.0" prefWidth="1343.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerEditarCliente">
    <children>
       <VBox prefHeight="897.0" prefWidth="1335.0">
          <children>
