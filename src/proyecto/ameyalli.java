@@ -61,7 +61,7 @@ public class ameyalli extends Application {
 			setScene(pane_root);
 			scene.getStylesheets().add("proyecto/styles.css");
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Rocódromo Ameyalli");
+			primaryStage.setTitle("Rocï¿½dromo Ameyalli");
 			primaryStage.setMaximized(true);
 			primaryStage.show();
 		}
