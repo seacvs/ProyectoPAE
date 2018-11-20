@@ -1,5 +1,6 @@
   package proyecto;
 
+import java.awt.ScrollPane;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -61,6 +62,7 @@ public class ameyalli extends Application {
 			scene.getStylesheets().add("proyecto/styles.css");
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Rocódromo Ameyalli");
+			primaryStage.setMaximized(true);
 			primaryStage.show();
 		}
 	
