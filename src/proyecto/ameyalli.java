@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 //hola sebas 
+//hola alex
 
 public class ameyalli extends Application {
 	private static ameyalli instancia;
