@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 //hola a todos, soy leo
 //hola sebas 
 //hola alex
+//comete el pan 
 
 public class ameyalli extends Application {
 	private static ameyalli instancia;
