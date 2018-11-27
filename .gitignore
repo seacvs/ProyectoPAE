@@ -1,0 +1,26 @@
+# Build output directies #
+##########################
+/target
+*/target
+/build
+*/build
+bin/
+
+# IntelliJ specific files/directories #
+#######################################
+out
+.idea
+*.ipr
+*.iws
+*.iml
+atlassian-ide-plugin.xml
+
+# Eclipse specific files/directories #
+######################################
+.classpath
+.project
+.settings
+.metadata
+
+
+.DS_Store
