@@ -117,3 +117,8 @@
 .check-box:selected .box { 
     -fx-background-color: #53c7f0;
 }
+
+/*--------TABLE------- */
+.table-view .column-header{
+	-fx-background-color:#E1E1E1;
+}
