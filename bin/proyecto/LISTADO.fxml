@@ -28,7 +28,7 @@
                      <children>
                         <HBox prefHeight="67.0" prefWidth="602.0">
                            <children>
-                              <TextField prefHeight="37.0" prefWidth="464.0" promptText="Buscar cliente">
+                              <TextField fx:id="buscar_textField" prefHeight="37.0" prefWidth="464.0" promptText="Buscar cliente">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
@@ -36,7 +36,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" styleClass="button-style" text="BUSCAR">
+                              <Button fx:id="buscarBtn" mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" styleClass="button-style" text="BUSCAR">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
@@ -96,7 +96,7 @@
                            <content>
                               <FlowPane maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="806.0" prefWrapLength="200.0">
                                  <children>
-                                    <Label prefWidth="150.0" text="Tipo de plan:" textAlignment="CENTER">
+                                    <Label fx:id="tipoPlan_label" prefWidth="150.0" text="Tipo de plan:" textAlignment="CENTER">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -112,7 +112,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="10.0" prefHeight="15.0" prefWidth="95.0" text="Fecha de inicio:" wrapText="true">
+                                    <Label fx:id="fechaInicio_label" layoutX="10.0" layoutY="10.0" prefHeight="15.0" prefWidth="95.0" text="Fecha de inicio:" wrapText="true">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -128,7 +128,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="70.0" prefHeight="25.0" prefWidth="84.0" text="Fecha de fin:">
+                                    <Label fx:id="fechaFin_label" layoutX="10.0" layoutY="70.0" prefHeight="25.0" prefWidth="84.0" text="Fecha de fin:">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -147,7 +147,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="130.0" prefHeight="25.0" prefWidth="38.0" text="Mail:">
+                                    <Label fx:id="mail_label" layoutX="10.0" layoutY="130.0" prefHeight="25.0" prefWidth="42.0" text="Mail:">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -166,7 +166,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="250.0" prefHeight="25.0" prefWidth="43.0" text="Sexo:">
+                                    <Label fx:id="sexo_label" layoutX="10.0" layoutY="250.0" prefHeight="25.0" prefWidth="43.0" text="Sexo:">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -185,7 +185,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label layoutX="305.0" layoutY="190.0" prefHeight="25.0" prefWidth="133.0" text="Fecha de Nacimiento:">
+                                    <Label fx:id="nacimiento_label" layoutX="305.0" layoutY="190.0" prefHeight="25.0" prefWidth="133.0" text="Fecha de Nacimiento:">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
@@ -198,7 +198,7 @@
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="250.0" prefWidth="76.0" text="Telefono:">
+                                    <Label fx:id="telefono_label" layoutX="10.0" layoutY="250.0" prefWidth="76.0" text="Telefono:">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
@@ -213,9 +213,9 @@
                                     </Label>
                                     <VBox>
                                        <children>
-                                          <Label alignment="CENTER" prefHeight="60.0" prefWidth="743.0" text="HORARIO CLASES">
+                                          <Label fx:id="horario_label" alignment="CENTER" prefHeight="60.0" prefWidth="600.0" text="HORARIO CLASES">
                                              <padding>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="0.0" left="5.0" right="5.0" top="0.0" />
                                              </padding>
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
@@ -239,7 +239,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Lunes" textAlignment="CENTER" GridPane.columnIndex="1">
+                                                <Label fx:id="lunes" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" text="Lunes" textAlignment="CENTER" GridPane.columnIndex="1">
                                                    <padding>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
@@ -247,22 +247,22 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </GridPane.margin>
                                                 </Label>
-                                                <Label alignment="CENTER" layoutX="115.0" layoutY="12.0" prefHeight="30.0" prefWidth="100.0" text="Martes" textAlignment="CENTER" GridPane.columnIndex="2">
+                                                <Label fx:id="martes" alignment="CENTER" layoutX="115.0" layoutY="12.0" prefHeight="30.0" prefWidth="100.0" text="Martes" textAlignment="CENTER" GridPane.columnIndex="2">
                                                    <padding>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
                                                 </Label>
-                                                <Label alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="Miercoles" textAlignment="CENTER" GridPane.columnIndex="3">
+                                                <Label fx:id="miercoles" alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="Miercoles" textAlignment="CENTER" GridPane.columnIndex="3">
                                                    <padding>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
                                                 </Label>
-                                                <Label alignment="CENTER" layoutX="310.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="Jueves" textAlignment="CENTER" GridPane.columnIndex="4">
+                                                <Label  fx:id="jueves" alignment="CENTER" layoutX="310.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="Jueves" textAlignment="CENTER" GridPane.columnIndex="4">
                                                    <padding>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
                                                 </Label>
-                                                <Label alignment="CENTER" layoutX="115.0" layoutY="12.0" prefHeight="30.0" prefWidth="100.0" text="Viernes" textAlignment="CENTER" GridPane.columnIndex="5">
+                                                <Label fx:id="viernes" alignment="CENTER" layoutX="115.0" layoutY="12.0" prefHeight="30.0" prefWidth="100.0" text="Viernes" textAlignment="CENTER" GridPane.columnIndex="5">
                                                    <padding>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
