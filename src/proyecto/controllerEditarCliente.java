@@ -1,31 +1,28 @@
 package proyecto;
 
-import java.awt.ScrollPane;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class controllerEditarCliente implements Initializable {
 	
 	@FXML private Button listoBtn;
 	@FXML private Button cancelarBtn;
+	public static ResourceBundle rb;
 
 	
-	public controllerEditarCliente() {
+	public controllerEditarCliente() throws IOException {
 		super();
+		FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
+		  rb = new PropertyResourceBundle(fis);
 	}
 
 	@Override

@@ -1,20 +1,18 @@
   package proyecto;
 
-import java.awt.ScrollPane;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 
 import javafx.application.Application;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 //hola a todos, soy leo
 //hola sebas 
@@ -23,7 +21,7 @@ import javafx.stage.Stage;
 
 public class ameyalli extends Application {
 	private static ameyalli instancia;
-	
+	public static ResourceBundle rb;
 	
 	private Scene scene; 
 	private Stage primaryStage = new Stage();
@@ -84,7 +82,9 @@ public class ameyalli extends Application {
 			}		// menu inicial con 4 tabs
 		}
 		
-		public static void main(String[] args) {
+		public static void main(String[] args) throws IOException {
+			FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
+			 rb = new PropertyResourceBundle(fis);
 			launch(args);
 		}
 		

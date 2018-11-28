@@ -22,7 +22,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="gymBtn" alignment="CENTER" mnemonicParsing="false" onAction="#gymInit" prefHeight="20.0" prefWidth="60.0" styleClass="menu-btn" text="GYM" textAlignment="CENTER">
+            <Button fx:id="gymBtn" alignment="CENTER" mnemonicParsing="false" onAction="#gymInit" prefHeight="20.0" prefWidth="80.0" styleClass="menu-btn" text="GYM" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="15.0" left="15.0" top="15.0" />
                </HBox.margin>
