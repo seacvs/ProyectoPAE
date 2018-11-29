@@ -79,14 +79,14 @@ public class controllerAgregarCliente implements Initializable {
 		fechaFin_label.setText(rb.getString("fechaFin_label"));
 		mail_label.setText(rb.getString("mail_label"));
 		sexo_label.setText(rb.getString("sexo_label"));
-		fechaNacimiento_label.setText(rb.getString("fechaNacimiento_label"));
+		fechaNacimiento_label.setText(rb.getString("nacimiento_label"));
 		telefono_label.setText(rb.getString("telefono_label"));
 		clasesEscalada_label.setText(rb.getString("clasesEscalada_label"));
-		lunes_label.setText(rb.getString("lunes_label"));
-		martes_label.setText(rb.getString("martes_label"));
-		miercoles_label.setText(rb.getString("miercoles_label"));
-		jueves_label.setText(rb.getString("jueves_label"));
-		viernes_label.setText(rb.getString("viernes_label"));
+		lunes_label.setText(rb.getString("lunes"));
+		martes_label.setText(rb.getString("martes"));
+		miercoles_label.setText(rb.getString("miercoles"));
+		jueves_label.setText(rb.getString("jueves"));
+		viernes_label.setText(rb.getString("viernes"));
 		agregarCliente_label.setText(rb.getString("agregarCliente_label"));
 		
 	}
