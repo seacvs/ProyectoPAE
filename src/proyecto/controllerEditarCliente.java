@@ -1,6 +1,7 @@
 package proyecto;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.PropertyResourceBundle;
@@ -54,7 +55,7 @@ public class controllerEditarCliente implements Initializable {
 	@FXML private Label miercoles_label;
 	@FXML private Label jueves_label;
 	@FXML private Label viernes_label;
-	@FXML private Label agregarCliente_label;
+	@FXML private Label editarCliente_label;
 	
 
 	@FXML private CheckBox nc_hlu16, nc_hlu17, nc_hlu18, nc_hlu19, nc_hlu20;
@@ -63,31 +64,32 @@ public class controllerEditarCliente implements Initializable {
 	@FXML private CheckBox nc_hju16,nc_hju17,nc_hju18, nc_hju19,nc_hju20;
 	@FXML private CheckBox nc_hvi16,nc_hvi17,nc_hvi18, nc_hvi19,nc_hvi20;
 
-	
-	public controllerEditarCliente() throws IOException {
+	FileInputStream fis;
+
+	public controllerEditarCliente() throws IOException  {
 		super();
-		FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
-		  rb = new PropertyResourceBundle(fis);
+		fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+		rb = new PropertyResourceBundle(fis);
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		nombre_label.setText(rb.getString("nombre_label"));
-		tipoPlan_label.setText(rb.getString("tipoPlan_label"));
-		apellido_label.setText(rb.getString("apellido_label"));
-		fechaInicio_label.setText(rb.getString("fechaInicio_label"));
-		fechaFin_label.setText(rb.getString("fechaFin_label"));
-		mail_label.setText(rb.getString("mail_label"));
-		sexo_label.setText(rb.getString("sexo_label"));
-		fechaNacimiento_label.setText(rb.getString("nacimiento_label"));
-		telefono_label.setText(rb.getString("telefono_label"));
-		clasesEscalada_label.setText(rb.getString("clasesEscalada_label"));
-		lunes_label.setText(rb.getString("lunes"));
-		martes_label.setText(rb.getString("martes"));
-		miercoles_label.setText(rb.getString("miercoles"));
-		jueves_label.setText(rb.getString("jueves"));
-		viernes_label.setText(rb.getString("viernes"));
-		agregarCliente_label.setText(rb.getString("agregarCliente_label"));
+			nombre_label.setText(rb.getString("nombre_label"));
+			tipoPlan_label.setText(rb.getString("tipoPlan_label"));
+			apellido_label.setText(rb.getString("apellido_label"));
+			fechaInicio_label.setText(rb.getString("fechaInicio_label"));
+			fechaFin_label.setText(rb.getString("fechaFin_label"));
+			mail_label.setText(rb.getString("mail_label"));
+			sexo_label.setText(rb.getString("sexo_label"));
+			fechaNacimiento_label.setText(rb.getString("nacimiento_label"));
+			telefono_label.setText(rb.getString("telefono_label"));
+			clasesEscalada_label.setText(rb.getString("clasesEscalada_label"));
+			lunes_label.setText(rb.getString("lunes"));
+			martes_label.setText(rb.getString("martes"));
+			miercoles_label.setText(rb.getString("miercoles"));
+			jueves_label.setText(rb.getString("jueves"));
+			viernes_label.setText(rb.getString("viernes"));
+			editarCliente_label.setText(rb.getString("editarCliente_label"));
 	}
 	
 	@FXML 
