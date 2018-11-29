@@ -23,10 +23,12 @@ public class ameyalli extends Application {
 	private static ameyalli instancia;
 	public static ResourceBundle rb;
 	
+	
 	private Scene scene; 
 	private Stage primaryStage = new Stage();
 	private BorderPane pane_root;
-	
+	public static FileInputStream fis;
+	public static String strIdioma ;
 	
 	public static ameyalli getInstance() {
 		if(instancia==null)
@@ -42,6 +44,20 @@ public class ameyalli extends Application {
 		pane_root.setCenter(node);
 	}
 	
+	public void setLenguage() throws IOException {
+		if(strIdioma.equals("en")){
+		 fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
+		 rb = new PropertyResourceBundle(fis);
+		 strIdioma="es";
+		}else{
+			 fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+			 rb = new PropertyResourceBundle(fis);
+			 strIdioma="en";
+		}
+	}
+	
+	
+	
 	@Override
 	public void init() throws Exception{
 		super.init();
@@ -55,7 +71,6 @@ public class ameyalli extends Application {
 		
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			//pane_root = FXMLLoader.load(getClass().getResource("menu.fxml"));		// menu inicial con 4 tabs
 			setRootPane(FXMLLoader.load(getClass().getResource("menu.fxml")));
 			HBox listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			pane_root.setCenter(listado);
@@ -83,7 +98,8 @@ public class ameyalli extends Application {
 		}
 		
 		public static void main(String[] args) throws IOException {
-			FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+			 fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+			 strIdioma="en";
 			 rb = new PropertyResourceBundle(fis);
 			launch(args);
 		}

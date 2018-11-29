@@ -82,11 +82,11 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <Spinner fx:id="text_nc_tipocuenta" prefHeight="27.0" prefWidth="144.0" translateY="-10.0">
+                        <TextField fx:id="text_nc_tipocuenta" prefHeight="27.0" prefWidth="144.0" translateY="-10.0">
                            <FlowPane.margin>
                               <Insets right="50.0" />
                            </FlowPane.margin>
-                        </Spinner>
+                        </TextField>
                         <Label fx:id="fechaInicio_label" text="Fecha de inicio" translateY="-5.0" wrapText="true">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -123,12 +123,12 @@
                               <Insets left="10.0" right="5.0" />
                            </FlowPane.margin>
                         </Label>
-                        <RadioButton fx:id="checkbox_nc_mujer" mnemonicParsing="false" text="Mujer">
+                        <RadioButton fx:id="checkbox_nc_mujer" mnemonicParsing="false" text="Mujer"  onAction="#rbMujer">
                            <FlowPane.margin>
                               <Insets right="5.0" />
                            </FlowPane.margin>
                         </RadioButton>
-                        <RadioButton fx:id="checkbox_nc_hombre" mnemonicParsing="false" text="Hombre" />
+                        <RadioButton fx:id="checkbox_nc_hombre" mnemonicParsing="false" text="Hombre" onAction="#rbHombre" selected="true"/>
                         <Label fx:id="fechaNacimiento_label" prefHeight="50.0" text="Fecha de Nacimiento">
                            <padding>
                               <Insets bottom="5.0" left="25.0" right="5.0" top="5.0" />

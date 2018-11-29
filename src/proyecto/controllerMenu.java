@@ -38,7 +38,6 @@ public class controllerMenu implements Initializable {
 			ajustesBtn.setText(rb.getString("ajustesBtn"));
 			tiendaBtn.setText(rb.getString("tiendaBtn"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -80,14 +79,7 @@ public class controllerMenu implements Initializable {
 	}
 	@FXML 
 	private void ajustesInit(){
-		HBox listado = null;
-		try {
-			listado = FXMLLoader.load(getClass().getResource("ajustes.fxml"));
-			ameyalli.getInstance().setCenter(listado);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
+		System.out.println("change lenguage");
 	}
 	
 	

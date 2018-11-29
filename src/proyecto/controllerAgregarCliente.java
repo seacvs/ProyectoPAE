@@ -3,6 +3,8 @@ package proyecto;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -20,17 +22,16 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 
 public class controllerAgregarCliente implements Initializable {
-	
+	public static ResourceBundle rb;
+
 	@FXML private Button listoBtn;
 	@FXML private Button cancelarBtn;
-	public static ResourceBundle rb;
-	
 	
 	@FXML private FlowPane id_label;
 	@FXML private TextField text_nc_nombre;
 	@FXML private TextField text_nc_apellido;
 	@FXML private TextField text_nc_id;
-	@FXML private Spinner<?> text_nc_tipocuenta;
+	@FXML private TextField text_nc_tipocuenta;
 	@FXML private DatePicker text_nc_fi;
 	@FXML private DatePicker text_nc_ff;
 	@FXML private TextField  text_nc_mail;
@@ -38,7 +39,6 @@ public class controllerAgregarCliente implements Initializable {
 	@FXML private RadioButton  checkbox_nc_hombre;
 	@FXML private TextField  text_nc_fechanacimiento;
 	@FXML private TextField  text_nc_telefono;
-	
 	
 	@FXML private Label nc_nombre_label;
 	@FXML private Label tipoPlan_label;
@@ -57,7 +57,6 @@ public class controllerAgregarCliente implements Initializable {
 	@FXML private Label viernes_label;
 	@FXML private Label agregarCliente_label;
 	
-
 	@FXML private CheckBox nc_hlu16, nc_hlu17, nc_hlu18, nc_hlu19, nc_hlu20;
 	@FXML private CheckBox nc_hmi16,nc_hmi17,nc_hmi18,nc_hmi19,nc_hmi20;
 	@FXML private CheckBox nc_hma16,nc_hma17,nc_hma18, nc_hma19,nc_hma20;
@@ -109,6 +108,7 @@ public class controllerAgregarCliente implements Initializable {
 	private void listo(){
 		HBox listado = null;
 		try {
+			//Cliente client = crearCliente();
 			listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			ameyalli.getInstance().setCenter(listado);
 			
@@ -117,5 +117,100 @@ public class controllerAgregarCliente implements Initializable {
 		}		
 	}
 	
+	@FXML 
+	private void rbHombre(){
+		if(checkbox_nc_mujer.isSelected()){
+			checkbox_nc_mujer.setSelected(false);
+			checkbox_nc_hombre.setSelected(true);
+		}else
+			checkbox_nc_hombre.setSelected(true);
+
+	}
+	
+	@FXML 
+	private void rbMujer(){
+		if(checkbox_nc_hombre.isSelected()){
+			checkbox_nc_hombre.setSelected(false);
+			checkbox_nc_mujer.setSelected(true);
+		}else
+			checkbox_nc_mujer.setSelected(true);
+
+	}
+	
+	private String getSexClient(){
+		if(checkbox_nc_hombre.isSelected()){
+			return rb.getString("hombre");
+		}
+		else
+		return rb.getString("mujer");
+	}
+	
+
+	private int getHours(){
+		if(nc_hlu16.isSelected()||nc_hma16.isSelected()||nc_hmi16.isSelected()||nc_hju16.isSelected()||nc_hvi16.isSelected()){
+			return 16;
+		}else if(nc_hlu17.isSelected()||nc_hma17.isSelected()||nc_hmi17.isSelected()||nc_hju17.isSelected()||nc_hvi17.isSelected()){
+			return 17;
+		}else if(nc_hlu18.isSelected()||nc_hma18.isSelected()||nc_hmi18.isSelected()||nc_hju18.isSelected()||nc_hvi18.isSelected()){
+			return 18;
+		}else if(nc_hlu19.isSelected()||nc_hma19.isSelected()||nc_hmi19.isSelected()||nc_hju19.isSelected()||nc_hvi19.isSelected()){
+			return 19;
+		}else if(nc_hlu20.isSelected()||nc_hma20.isSelected()||nc_hmi20.isSelected()||nc_hju20.isSelected()||nc_hvi20.isSelected()){
+			return 20;
+		}
+		return 0;
+	}
+	
+	private String [] getDays(){
+		String[] days=new String [5];
+		int contador=0;
+		if(nc_hlu16.isSelected()||nc_hlu17.isSelected()||nc_hlu18.isSelected()||nc_hlu19.isSelected()||nc_hlu19.isSelected()){
+			days[contador]="Lunes";
+			contador++;
+		}
+		if(nc_hlu17.isSelected()||nc_hma17.isSelected()||nc_hmi17.isSelected()||nc_hju17.isSelected()||nc_hvi17.isSelected()){
+			days[contador]="Martes";
+			contador++;
+		}
+		if(nc_hlu18.isSelected()||nc_hma18.isSelected()||nc_hmi18.isSelected()||nc_hju18.isSelected()||nc_hvi18.isSelected()){
+			days[contador]="Miercoles";
+			contador++;
+		}
+		if(nc_hlu19.isSelected()||nc_hma19.isSelected()||nc_hmi19.isSelected()||nc_hju19.isSelected()||nc_hvi19.isSelected()){
+			days[contador]="Jueves";
+			contador++;
+		}
+		if(nc_hlu20.isSelected()||nc_hma20.isSelected()||nc_hmi20.isSelected()||nc_hju20.isSelected()||nc_hvi20.isSelected()){
+			days[contador]="Viernes";
+			contador++;
+		}
+		
+		String goodDays [] = new String[contador];
+		for(String s : days){
+			int i=0;
+			if(days[i]==null)
+				break;
+			else{
+				goodDays[i] = s;
+				i++;
+			}
+		}
+		return goodDays;
+	}
+	
+	private void crearCliente(){
+		
+		String name = text_nc_nombre.getText();
+		String lastname = text_nc_apellido.getText();
+		String type = text_nc_tipocuenta.getText();
+		String startDate = LocalDate.now().toString();
+		String mail = text_nc_mail.getText();
+		String sex = getSexClient();
+		String phone = text_nc_telefono.getText();
+		String birthDate = text_nc_fechanacimiento.getText(); 
+		String days[] = getDays();
+		int hour = getHours();
+		//Cliente escalador = new Cliente(name,lastname,type,startDate,mail,sex,phone,birthDate, days, hour); 
+	}
 	
 }
