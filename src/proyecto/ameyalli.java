@@ -83,7 +83,7 @@ public class ameyalli extends Application {
 		}
 		
 		public static void main(String[] args) throws IOException {
-			FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
+			FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
 			 rb = new PropertyResourceBundle(fis);
 			launch(args);
 		}

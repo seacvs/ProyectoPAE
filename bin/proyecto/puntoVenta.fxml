@@ -14,8 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="700.0" prefWidth="1200.0">
          <children>
@@ -61,9 +60,9 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane id="AP_Productos" layoutX="14.0" layoutY="229.0" prefHeight="496.0" prefWidth="566.0" style="-fx-background-color: #ededed; -fx-background-radius: 8px;">
+                  <AnchorPane id="AP_Productos" layoutX="14.0" layoutY="229.0" prefHeight="443.0" prefWidth="566.0" style="-fx-background-color: #ededed; -fx-background-radius: 8px;" AnchorPane.bottomAnchor="129.0" AnchorPane.rightAnchor="686.0" AnchorPane.topAnchor="229.0">
                      <children>
-                        <ListView id="LV_Productos" layoutX="7.0" layoutY="96.0" opacity="0.8" prefHeight="389.0" prefWidth="457.0" style="-fx-background-radius: 8px;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="96.0" />
+                        <ListView id="LV_Productos" layoutX="7.0" layoutY="96.0" opacity="0.8" prefHeight="329.0" prefWidth="553.0" style="-fx-background-radius: 8px;" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="96.0" />
                         <Button contentDisplay="RIGHT" layoutX="402.0" layoutY="58.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="62.0" style="-fx-background-color: edf9fc; -fx-background-radius: 8px;" text="Buscar" textAlignment="RIGHT" textFill="#005792" AnchorPane.bottomAnchor="411.0" AnchorPane.leftAnchor="402.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="58.0">
                            <font>
                               <Font name="Book Antiqua" size="12.0" />
@@ -78,7 +77,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane id="AP_Carrito" layoutX="595.0" layoutY="229.0" prefHeight="496.0" prefWidth="658.0" style="-fx-background-color: #ededed; -fx-background-radius: 8px;">
+                  <AnchorPane id="AP_Carrito" layoutX="595.0" layoutY="229.0" prefHeight="396.0" prefWidth="658.0" style="-fx-background-color: #ededed; -fx-background-radius: 8px;">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -89,7 +88,7 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <ListView layoutX="14.0" layoutY="57.0" prefHeight="427.0" prefWidth="626.0" style="-fx-background-radius: 8px;" />
+                        <ListView layoutX="14.0" layoutY="57.0" prefHeight="325.0" prefWidth="626.0" style="-fx-background-radius: 8px;" />
                         <ImageView layoutX="11.0" layoutY="9.0">
                            <image>
                               <Image url="@../../AppData/Local/Temp/icons8_Sell_Stock_48px.png" />
@@ -119,12 +118,12 @@
                      </children>
                   </AnchorPane>
                   <Text fill="#005792" layoutX="149.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: book antiqua; -fx-font-size: 20px;" text="Lista de Productos" textAlignment="CENTER" wrappingWidth="199.99999944865704" AnchorPane.bottomAnchor="519.98046875" AnchorPane.topAnchor="233.41796875" />
-                  <Button layoutX="703.0" layoutY="732.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="480.0" style="-fx-background-color: #ffda7c; -fx-background-radius: 8PX;" text="CONFIRMAR COMPRA" textFill="#1e1e1e">
+                  <Button layoutX="768.0" layoutY="634.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="480.0" style="-fx-background-color: #ffda7c; -fx-background-radius: 8PX;" text="CONFIRMAR COMPRA" textFill="#1e1e1e">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="578.0" layoutY="732.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="109.0" style="-fx-background-color: #d3490e; -fx-background-radius: 8PX;" text="Cancelar">
+                  <Button layoutX="641.0" layoutY="638.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="109.0" style="-fx-background-color: #d3490e; -fx-background-radius: 8PX;" text="Cancelar" translateY="-5.0">
                      <font>
                         <Font size="20.0" />
                      </font>

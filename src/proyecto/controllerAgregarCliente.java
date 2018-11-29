@@ -40,7 +40,7 @@ public class controllerAgregarCliente implements Initializable {
 	@FXML private TextField  text_nc_telefono;
 	
 	
-	@FXML private Label nombre_label;
+	@FXML private Label nc_nombre_label;
 	@FXML private Label tipoPlan_label;
 	@FXML private Label apellido_label;
 	@FXML private Label fechaInicio_label;
@@ -66,13 +66,13 @@ public class controllerAgregarCliente implements Initializable {
 	
 	public controllerAgregarCliente() throws IOException {
 		super();
-		FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
+		FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
 		 rb = new PropertyResourceBundle(fis);
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		nombre_label.setText(rb.getString("nombre_label"));
+		nc_nombre_label.setText(rb.getString("nombre_label"));
 		tipoPlan_label.setText(rb.getString("tipoPlan_label"));
 		apellido_label.setText(rb.getString("apellido_label"));
 		fechaInicio_label.setText(rb.getString("fechaInicio_label"));
@@ -88,6 +88,8 @@ public class controllerAgregarCliente implements Initializable {
 		jueves_label.setText(rb.getString("jueves"));
 		viernes_label.setText(rb.getString("viernes"));
 		agregarCliente_label.setText(rb.getString("agregarCliente_label"));
+		listoBtn.setText(rb.getString("listoBtn"));
+		cancelarBtn.setText(rb.getString("cancelarBtn"));
 		
 	}
 	

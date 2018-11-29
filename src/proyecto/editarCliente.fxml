@@ -17,13 +17,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerAgregarCliente">
+<HBox prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerEditarCliente">
    <children>
       <VBox prefHeight="700.0" prefWidth="1100">
          <children>
             <BorderPane prefHeight="259.0" prefWidth="1154.0">
                <top>
-                  <Label fx:id="EditarCliente_label" prefHeight="52.0" prefWidth="302.0" text="Editar Cliente" BorderPane.alignment="CENTER">
+                  <Label fx:id="editarCliente_label" prefHeight="52.0" prefWidth="302.0" text="Editar Cliente" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -35,7 +35,7 @@
                <center>
                   <FlowPane fx:id="id_label" prefHeight="110.0" prefWidth="1104.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="nombre_label" text="Nombre" textAlignment="CENTER">
+                        <Label fx:id="ec_nombre_label" text="Nombre" textAlignment="CENTER">
                            <padding>
                               <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
                            </padding>

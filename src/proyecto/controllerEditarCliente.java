@@ -40,7 +40,7 @@ public class controllerEditarCliente implements Initializable {
 	@FXML private TextField  text_nc_telefono;
 	
 	
-	@FXML private Label nombre_label;
+	@FXML private Label ec_nombre_label;
 	@FXML private Label tipoPlan_label;
 	@FXML private Label apellido_label;
 	@FXML private Label fechaInicio_label;
@@ -74,7 +74,7 @@ public class controllerEditarCliente implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-			nombre_label.setText(rb.getString("nombre_label"));
+			ec_nombre_label.setText(rb.getString("nombre_label"));
 			tipoPlan_label.setText(rb.getString("tipoPlan_label"));
 			apellido_label.setText(rb.getString("apellido_label"));
 			fechaInicio_label.setText(rb.getString("fechaInicio_label"));
@@ -90,6 +90,9 @@ public class controllerEditarCliente implements Initializable {
 			jueves_label.setText(rb.getString("jueves"));
 			viernes_label.setText(rb.getString("viernes"));
 			editarCliente_label.setText(rb.getString("editarCliente_label"));
+			editarCliente_label.setText(rb.getString("editarCliente_label"));
+			listoBtn.setText(rb.getString("listoBtn"));
+			cancelarBtn.setText(rb.getString("cancelarBtn"));
 	}
 	
 	@FXML 

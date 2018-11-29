@@ -31,7 +31,7 @@ public class controllerMenu implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
+			fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
 			ResourceBundle  rb = new PropertyResourceBundle(fis);
 			gymBtn.setText(rb.getString("gymBtn"));
 			estBtn.setText(rb.getString("estBtn"));
