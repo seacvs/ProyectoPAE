@@ -89,6 +89,8 @@ public class controllerAgregarCliente implements Initializable {
 		agregarCliente_label.setText(rb.getString("agregarCliente_label"));
 		listoBtn.setText(rb.getString("listoBtn"));
 		cancelarBtn.setText(rb.getString("cancelarBtn"));
+		checkbox_nc_mujer.setText(rb.getString("mujer"));
+		checkbox_nc_hombre.setText(rb.getString("hombre"));
 		
 	}
 	

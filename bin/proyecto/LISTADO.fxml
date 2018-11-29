@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="748.0" prefWidth="1427.0" styleClass="label" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerClientes">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="748.0" prefWidth="1427.0" styleClass="label" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerClientes">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" HBox.hgrow="ALWAYS">
          <content>
@@ -46,7 +46,7 @@
                               </Button>
                            </children>
                         </HBox>
-                        <TableView prefHeight="620.0" prefWidth="487.0">
+                        <TableView fx:id="tableView_table" prefHeight="620.0" prefWidth="487.0">
                           <columns>
                             <TableColumn fx:id="id_table" prefWidth="75.0" text="ID" />
                             <TableColumn fx:id="apellido_table" minWidth="117.99996948242188" prefWidth="117.99996948242188" text="APELLIDO" />

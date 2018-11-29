@@ -2,7 +2,7 @@ package proyecto;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Cliente {
+public class Cliente {//Clase cliente la cual se usa para llenar la tabla de clientes desde la BD
 	
 	private SimpleStringProperty id;
 	private SimpleStringProperty id_plan;
@@ -16,8 +16,6 @@ public class Cliente {
 	private SimpleStringProperty fechaInicio;
 	private SimpleStringProperty estatus;
 	
-
-
 	public Cliente() {
 		super();
 	}
@@ -41,8 +39,8 @@ public class Cliente {
 		this.id = new SimpleStringProperty(id);
 		this.lastname = new SimpleStringProperty(lastname);
 		this.name = new SimpleStringProperty(name);
-		this.lastname = new SimpleStringProperty(estatus);
-		this.estatus = new SimpleStringProperty(plan);
+		this.estatus = new SimpleStringProperty(estatus);
+		this.plan = new SimpleStringProperty(plan);
 		this.sexo = new SimpleStringProperty(sexo);
 		
 	}

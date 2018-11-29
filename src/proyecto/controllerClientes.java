@@ -30,12 +30,12 @@ public class controllerClientes implements Initializable {
 	@FXML private TextField buscar_textField;
 	
 	
-	@FXML private TableColumn id_table ;
-	@FXML private TableColumn apellido_table;
-	@FXML private TableColumn nombre_table;
-	@FXML private TableColumn estatus_table;
-	@FXML private TableColumn plan_table;
-	@FXML private TableColumn sexo_table;
+	@FXML private TableColumn<Cliente,String> id_table ;
+	@FXML private TableColumn<Cliente,String> apellido_table;
+	@FXML private TableColumn<Cliente,String> nombre_table;
+	@FXML private TableColumn<Cliente,String> estatus_table;
+	@FXML private TableColumn<Cliente,String> plan_table;
+	@FXML private TableColumn<Cliente,String> sexo_table;
 
 	
 	@FXML private Label nombre_label;
@@ -49,6 +49,94 @@ public class controllerClientes implements Initializable {
 	@FXML private Label telefono_label,label_telefono;
 	@FXML private Label horario_label;
 	@FXML private Label lunes,martes,miercoles,jueves,viernes;
+	
+
+
+	@FXML private CheckBox hlu16, hlu17, hlu18, hlu19, hlu20;
+	@FXML private CheckBox hmi16,hmi17,hmi18,hmi19,hmi20;
+	@FXML private CheckBox hma16,hma17,hma18, hma19,hma20;
+	@FXML private CheckBox hju16,hju17,hju18, hju19,hju20;
+	@FXML private CheckBox hvi16,hvi17,hvi18, hvi19,hvi20;
+	
+	@FXML private FlowPane flowPaneDatos;
+	@FXML private HBox hboxBotones;
+
+	@FXML private TableView<Cliente> tableView_table;
+	
+// nombre_label es el titulo del campo 
+// label_nombre_ es el campo a llenar
+	public static ResourceBundle rb;
+
+	
+	public controllerClientes() throws IOException {
+		super();
+		FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+		rb = new PropertyResourceBundle(fis);
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {	
+		
+		final ObservableList<Cliente> data = FXCollections.observableArrayList(
+			new Cliente ("1","Palomero", "Juan","Activo", "Clase", "Hombre"),
+			new Cliente ("2","Perez", "Miguel","Inactivo", "Visita", "Hombre"),
+			new Cliente ("3","Ramirez", "China","Inactivo", "Visita", "Mujer"),
+			new Cliente ("4","Gonzales", "Sebastian","Activo", "Clase", "Hombre"),
+			new Cliente ("5","Romeo", "Juan","Activo", "Membresia", "Hombre"),
+			new Cliente ("6","Kardashan", "Kim","Activo", "Clase", "Mujer")	
+		);
+		
+		
+		id_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("id"));
+		apellido_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("lastname"));
+		nombre_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("name"));
+		estatus_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("estatus"));
+		plan_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("plan"));
+		sexo_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("sexo"));
+		
+		tableView_table.setItems(data);
+		
+		
+		buscarBtn.setText(rb.getString("buscarBtn"));
+		editarBtn.setText(rb.getString("editarBtn"));
+		agregarBtn.setText(rb.getString("agregarBtn"));
+		buscar_textField.setPromptText(rb.getString("buscar_textField"));
+		id_table.setText(rb.getString("id_table"));
+		apellido_table.setText(rb.getString("apellido_table"));
+		nombre_table.setText(rb.getString("nombre_table"));
+		estatus_table.setText(rb.getString("estatus_table"));
+		plan_table.setText(rb.getString("plan_table"));
+		sexo_table.setText(rb.getString("sexo_table"));
+		nombre_label.setText(rb.getString("nombre_label"));
+		estatus_label.setText(rb.getString("estatus_label"));
+		
+		tipoPlan_label.setText(rb.getString("tipoPlan_label"));
+		fechaInicio_label.setText(rb.getString("fechaInicio_label"));
+		fechaFin_label.setText(rb.getString("fechaFin_label"));
+		mail_label.setText(rb.getString("mail_label"));
+		sexo_label.setText(rb.getString("sexo_label"));
+		nacimiento_label.setText(rb.getString("nacimiento_label"));
+		telefono_label.setText(rb.getString("telefono_label"));
+		horario_label.setText(rb.getString("horario_label"));
+		lunes.setText(rb.getString("lunes"));
+		martes.setText(rb.getString("martes"));
+		miercoles.setText(rb.getString("miercoles"));
+		jueves.setText(rb.getString("jueves"));
+		viernes.setText(rb.getString("viernes"));
+		flowPaneDatos.setStyle("-fx-background-color: #FFFFFF");
+		hboxBotones.setStyle("-fx-background-color: #FFFFFF");
+		
+		nombre_label.setText("China Ramirez");
+		label_mail.setText("china@gmail.com");
+		label_plan.setText("No aplica");
+		label_sexo.setText("Mujer");
+		label_nacimiento.setText("29/11/1988");
+		label_telefono.setText("331220943");
+		label_ff.setText("No aplica");
+		label_fi.setText("No aplica");
+		estatus_label.setText("Inactivo");
+
+	}
 	
 	
 	public Label getNombre_label() {
@@ -121,99 +209,6 @@ public class controllerClientes implements Initializable {
 
 	public void setLabel_telefono(Label label_telefono) {
 		this.label_telefono = label_telefono;
-	}
-
-	@FXML private CheckBox hlu16, hlu17, hlu18, hlu19, hlu20;
-	@FXML private CheckBox hmi16,hmi17,hmi18,hmi19,hmi20;
-	@FXML private CheckBox hma16,hma17,hma18, hma19,hma20;
-	@FXML private CheckBox hju16,hju17,hju18, hju19,hju20;
-	@FXML private CheckBox hvi16,hvi17,hvi18, hvi19,hvi20;
-	
-	@FXML private FlowPane flowPaneDatos;
-	@FXML private HBox hboxBotones;
-
-	@FXML private TableView<Cliente> tableView_table;
-	
-// nombre_label es el titulo del campo 
-// label_nombre_ es el campo a llenar
-	public static ResourceBundle rb;
-
-	
-	public controllerClientes() throws IOException {
-		super();
-		FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
-		rb = new PropertyResourceBundle(fis);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {	
-		//Creacion de tabla 
-		@SuppressWarnings("rawtypes")
-		
-		TableColumn id_table = new TableColumn("ID");
-		TableColumn apellido_table = new TableColumn("APELLIDO");
-		TableColumn nombre_table = new TableColumn("NOMBRE");
-		TableColumn estatus_table = new TableColumn("ESTATUS");
-		TableColumn plan_table = new TableColumn("PLAN");
-		TableColumn sexo_table = new TableColumn("SEXO");
-		//tableView_table.getColumns().addAll(id, apellido, nombre, estatus, plan, sexo);
-		
-		//ObservableList<Cliente> data2 = tableView_table.getItems();
-		
-		//data2.add(new Cliente ("1","Palomero", "Juan","Activo", "Clase", "Macho"));
-		
-		tableView_table.getColumns().addAll(id_table, apellido_table, nombre_table, estatus_table, plan_table, sexo_table);
-		
-		final ObservableList<Cliente> data = FXCollections.observableArrayList(
-			new Cliente ("1","Palomero", "Juan","Activo", "Clase", "Macho"),
-			new Cliente ("2","gay", "Pablo","Activo", "Clase", "Macho"),
-			new Cliente ("3","meLaPela", "chino","Activo", "Clase", "Macho"),
-			new Cliente ("4","Gonzales", "Sebas","Activo", "Clase", "Macho"),
-			new Cliente ("5","Romeo", "Juan","Activo", "Clase", "Macho"),
-			new Cliente ("6","Kardashan", "Kim","Activo", "Clase", "Marimacho")	
-		);
-		
-
-		/*id_table.setCellFactory(new PropertyValueFactory<Cliente, String>("id"));
-		apellido_table.setCellFactory(new PropertyValueFactory<Cliente, String>("lastname"));
-		nombre_table.setCellFactory(new PropertyValueFactory<Cliente, String>("name"));
-		estatus_table.setCellFactory(new PropertyValueFactory<Cliente, String>("estatus"));
-		plan_table.setCellFactory(new PropertyValueFactory<Cliente, String>("plan"));
-		sexo_table.setCellFactory(new PropertyValueFactory<Cliente, String>("sexo"));*/
-		
-		tableView_table.setItems(data);
-		
-		
-		buscarBtn.setText(rb.getString("buscarBtn"));
-		editarBtn.setText(rb.getString("editarBtn"));
-		agregarBtn.setText(rb.getString("agregarBtn"));
-		buscar_textField.setPromptText(rb.getString("buscar_textField"));
-		id_table.setText(rb.getString("id_table"));
-		apellido_table.setText(rb.getString("apellido_table"));
-		nombre_table.setText(rb.getString("nombre_table"));
-		estatus_table.setText(rb.getString("estatus_table"));
-		plan_table.setText(rb.getString("plan_table"));
-		sexo_table.setText(rb.getString("sexo_table"));
-		nombre_label.setText(rb.getString("nombre_label"));
-		estatus_label.setText(rb.getString("estatus_label"));
-		
-		tipoPlan_label.setText(rb.getString("tipoPlan_label"));
-		fechaInicio_label.setText(rb.getString("fechaInicio_label"));
-		fechaFin_label.setText(rb.getString("fechaFin_label"));
-		mail_label.setText(rb.getString("mail_label"));
-		sexo_label.setText(rb.getString("sexo_label"));
-		nacimiento_label.setText(rb.getString("nacimiento_label"));
-		telefono_label.setText(rb.getString("telefono_label"));
-		horario_label.setText(rb.getString("horario_label"));
-		lunes.setText(rb.getString("lunes"));
-		martes.setText(rb.getString("martes"));
-		miercoles.setText(rb.getString("miercoles"));
-		jueves.setText(rb.getString("jueves"));
-		viernes.setText(rb.getString("viernes"));
-		flowPaneDatos.setStyle("-fx-background-color: #FFFFFF");
-		hboxBotones.setStyle("-fx-background-color: #FFFFFF");
-		
 	}
 	
 	@FXML 
