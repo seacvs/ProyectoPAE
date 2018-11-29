@@ -1,30 +1,138 @@
 package proyecto;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Cliente {
-	int id,id_plan;
-	String name;
-	String lastname;
-	String mail;
-	String fechaNacimiento;
-	String telefono;
-	String plan;
 	
+	private SimpleStringProperty id;
+	private SimpleStringProperty id_plan;
+	private SimpleStringProperty name;
+	private SimpleStringProperty lastname;
+	private SimpleStringProperty mail;
+	private SimpleStringProperty fechaNacimiento;
+	private SimpleStringProperty telefono;
+	private SimpleStringProperty plan;
+	private SimpleStringProperty sexo;
+	private SimpleStringProperty fechaInicio;
+	private SimpleStringProperty estatus;
 	
+
+
 	public Cliente() {
 		super();
 	}
 
-	public Cliente(int id, int id_plan, String name, String lastname, String mail, String fechaNacimiento,
-			String telefono, String plan) {
+	public Cliente(String id, String id_plan, String name, String lastname, String mail, String fechaNacimiento,
+			String telefono, String sexo,String fechaInicio) {
 		super();
-		this.id = id;
-		this.id_plan = id_plan;
-		this.name = name;
-		this.lastname = lastname;
-		this.mail = mail;
-		this.fechaNacimiento = fechaNacimiento;
-		this.telefono = telefono;
-		this.plan = plan;
+		this.id = new SimpleStringProperty(id);
+		this.id_plan = new SimpleStringProperty(id_plan);
+		this.name = new SimpleStringProperty(name);
+		this.lastname = new SimpleStringProperty(lastname);
+		this.mail = new SimpleStringProperty(mail);
+		this.fechaNacimiento = new SimpleStringProperty(fechaNacimiento);
+		this.telefono = new SimpleStringProperty(telefono);
+		this.sexo = new SimpleStringProperty(sexo);
+		this.fechaInicio = new SimpleStringProperty(fechaInicio);
+	}
+
+	public Cliente(String id, String lastname, String name, String estatus,String plan, String sexo) {
+		super();
+		this.id = new SimpleStringProperty(id);
+		this.lastname = new SimpleStringProperty(lastname);
+		this.name = new SimpleStringProperty(name);
+		this.lastname = new SimpleStringProperty(estatus);
+		this.estatus = new SimpleStringProperty(plan);
+		this.sexo = new SimpleStringProperty(sexo);
+		
+	}
+	
+	public String getEstatus() {
+		return estatus.get();
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus.set(estatus);
+	}
+	
+	public String getId() {
+		return id.get();
+	}
+
+	public void setId(String id) {
+		this.id.set(id);
+	}
+
+	public String getId_plan() {
+		return id_plan.get();
+	}
+
+	public void setId_plan(String id_plan) {
+		this.id_plan.set(id_plan);
+	}
+
+	public String getName() {
+		return name.get();
+	}
+
+	public void setName(String name) {
+		this.name.set(name);
+	}
+
+	public String getLastname() {
+		return lastname.get();
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname.set(lastname);
+	}
+
+	public String getMail() {
+		return mail.get();
+	}
+
+	public void setMail(String mail) {
+		this.mail.set(mail);
+	}
+
+	public String getFechaNacimiento() {
+		return fechaNacimiento.get();
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento.set(fechaNacimiento);;
+	}
+
+	public String getTelefono() {
+		return telefono.get();
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono.set(telefono);;
+	}
+
+	public String getPlan() {
+		return plan.get();
+	}
+
+	public void setPlan(String plan) {
+		this.plan.get();
+	}
+
+	public String getSexo() {
+		return sexo.get();
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo.set(sexo);;
+	}
+
+	public String getFechaInicio() {
+		return fechaInicio.get();
+	}
+
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio.set(fechaInicio);
 	}
 	
 	

@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,7 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,12 +29,14 @@ public class controllerClientes implements Initializable {
 	@FXML private Button buscarBtn;
 	@FXML private TextField buscar_textField;
 	
-	@FXML private TableColumn<?, ?> id_table;
-	@FXML private TableColumn<?, ?> apellido_table;
-	@FXML private TableColumn<?, ?> nombre_table;
-	@FXML private TableColumn<?, ?> estatus_table;
-	@FXML private TableColumn<?, ?> plan_table;
-	@FXML private TableColumn<?, ?> sexo_table;
+	
+	@FXML private TableColumn id_table ;
+	@FXML private TableColumn apellido_table;
+	@FXML private TableColumn nombre_table;
+	@FXML private TableColumn estatus_table;
+	@FXML private TableColumn plan_table;
+	@FXML private TableColumn sexo_table;
+
 	
 	@FXML private Label nombre_label;
 	@FXML private Label estatus_label;
@@ -43,6 +49,7 @@ public class controllerClientes implements Initializable {
 	@FXML private Label telefono_label,label_telefono;
 	@FXML private Label horario_label;
 	@FXML private Label lunes,martes,miercoles,jueves,viernes;
+	
 	
 	public Label getNombre_label() {
 		return nombre_label;
@@ -125,6 +132,7 @@ public class controllerClientes implements Initializable {
 	@FXML private FlowPane flowPaneDatos;
 	@FXML private HBox hboxBotones;
 
+	@FXML private TableView<Cliente> tableView_table;
 	
 // nombre_label es el titulo del campo 
 // label_nombre_ es el campo a llenar
@@ -137,8 +145,46 @@ public class controllerClientes implements Initializable {
 		rb = new PropertyResourceBundle(fis);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {		
+	public void initialize(URL url, ResourceBundle resourceBundle) {	
+		//Creacion de tabla 
+		@SuppressWarnings("rawtypes")
+		
+		TableColumn id_table = new TableColumn("ID");
+		TableColumn apellido_table = new TableColumn("APELLIDO");
+		TableColumn nombre_table = new TableColumn("NOMBRE");
+		TableColumn estatus_table = new TableColumn("ESTATUS");
+		TableColumn plan_table = new TableColumn("PLAN");
+		TableColumn sexo_table = new TableColumn("SEXO");
+		//tableView_table.getColumns().addAll(id, apellido, nombre, estatus, plan, sexo);
+		
+		//ObservableList<Cliente> data2 = tableView_table.getItems();
+		
+		//data2.add(new Cliente ("1","Palomero", "Juan","Activo", "Clase", "Macho"));
+		
+		tableView_table.getColumns().addAll(id_table, apellido_table, nombre_table, estatus_table, plan_table, sexo_table);
+		
+		final ObservableList<Cliente> data = FXCollections.observableArrayList(
+			new Cliente ("1","Palomero", "Juan","Activo", "Clase", "Macho"),
+			new Cliente ("2","gay", "Pablo","Activo", "Clase", "Macho"),
+			new Cliente ("3","meLaPela", "chino","Activo", "Clase", "Macho"),
+			new Cliente ("4","Gonzales", "Sebas","Activo", "Clase", "Macho"),
+			new Cliente ("5","Romeo", "Juan","Activo", "Clase", "Macho"),
+			new Cliente ("6","Kardashan", "Kim","Activo", "Clase", "Marimacho")	
+		);
+		
+
+		/*id_table.setCellFactory(new PropertyValueFactory<Cliente, String>("id"));
+		apellido_table.setCellFactory(new PropertyValueFactory<Cliente, String>("lastname"));
+		nombre_table.setCellFactory(new PropertyValueFactory<Cliente, String>("name"));
+		estatus_table.setCellFactory(new PropertyValueFactory<Cliente, String>("estatus"));
+		plan_table.setCellFactory(new PropertyValueFactory<Cliente, String>("plan"));
+		sexo_table.setCellFactory(new PropertyValueFactory<Cliente, String>("sexo"));*/
+		
+		tableView_table.setItems(data);
+		
+		
 		buscarBtn.setText(rb.getString("buscarBtn"));
 		editarBtn.setText(rb.getString("editarBtn"));
 		agregarBtn.setText(rb.getString("agregarBtn"));
