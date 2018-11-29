@@ -14,7 +14,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class controllerClientes implements Initializable {
 	
@@ -42,11 +44,86 @@ public class controllerClientes implements Initializable {
 	@FXML private Label horario_label;
 	@FXML private Label lunes,martes,miercoles,jueves,viernes;
 	
+	public Label getNombre_label() {
+		return nombre_label;
+	}
+
+	public void setNombre_label(Label nombre_label) {
+		this.nombre_label = nombre_label;
+	}
+
+	public Label getEstatus_label() {
+		return estatus_label;
+	}
+
+	public void setEstatus_label(Label estatus_label) {
+		this.estatus_label = estatus_label;
+	}
+
+	public Label getLabel_plan() {
+		return label_plan;
+	}
+
+	public void setLabel_plan(Label label_plan) {
+		this.label_plan = label_plan;
+	}
+
+	public Label getLabel_fi() {
+		return label_fi;
+	}
+
+	public void setLabel_fi(Label label_fi) {
+		this.label_fi = label_fi;
+	}
+
+	public Label getLabel_ff() {
+		return label_ff;
+	}
+
+	public void setLabel_ff(Label label_ff) {
+		this.label_ff = label_ff;
+	}
+
+	public Label getLabel_mail() {
+		return label_mail;
+	}
+
+	public void setLabel_mail(Label label_mail) {
+		this.label_mail = label_mail;
+	}
+
+	public Label getLabel_sexo() {
+		return label_sexo;
+	}
+
+	public void setLabel_sexo(Label label_sexo) {
+		this.label_sexo = label_sexo;
+	}
+
+	public Label getLabel_nacimiento() {
+		return label_nacimiento;
+	}
+
+	public void setLabel_nacimiento(Label label_nacimiento) {
+		this.label_nacimiento = label_nacimiento;
+	}
+
+	public Label getLabel_telefono() {
+		return label_telefono;
+	}
+
+	public void setLabel_telefono(Label label_telefono) {
+		this.label_telefono = label_telefono;
+	}
+
 	@FXML private CheckBox hlu16, hlu17, hlu18, hlu19, hlu20;
 	@FXML private CheckBox hmi16,hmi17,hmi18,hmi19,hmi20;
 	@FXML private CheckBox hma16,hma17,hma18, hma19,hma20;
 	@FXML private CheckBox hju16,hju17,hju18, hju19,hju20;
 	@FXML private CheckBox hvi16,hvi17,hvi18, hvi19,hvi20;
+	
+	@FXML private FlowPane flowPaneDatos;
+	@FXML private HBox hboxBotones;
 
 	
 // nombre_label es el titulo del campo 
@@ -88,6 +165,9 @@ public class controllerClientes implements Initializable {
 		miercoles.setText(rb.getString("miercoles"));
 		jueves.setText(rb.getString("jueves"));
 		viernes.setText(rb.getString("viernes"));
+		flowPaneDatos.setStyle("-fx-background-color: #FFFFFF");
+		hboxBotones.setStyle("-fx-background-color: #FFFFFF");
+		
 	}
 	
 	@FXML 
