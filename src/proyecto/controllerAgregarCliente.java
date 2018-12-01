@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -42,6 +45,7 @@ public class controllerAgregarCliente implements Initializable {
 	
 	@FXML private Label nc_nombre_label;
 	@FXML private Label tipoPlan_label;
+	@FXML private Spinner<String> spinner_plan;
 	@FXML private Label apellido_label;
 	@FXML private Label fechaInicio_label;
 	@FXML private Label fechaFin_label;
@@ -73,6 +77,16 @@ public class controllerAgregarCliente implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nc_nombre_label.setText(rb.getString("nombre_label"));
 		tipoPlan_label.setText(rb.getString("tipoPlan_label"));
+		
+		ObservableList<String> planes = FXCollections.observableArrayList(//
+	               "clases", "macroplan", "membresia", "visita", "becados");
+		  // Value factory.
+	       SpinnerValueFactory<String> valueFactory = //
+	               new SpinnerValueFactory.ListSpinnerValueFactory<String>(planes);
+	       // Default value
+	       valueFactory.setValue("visita");
+	    spinner_plan.setValueFactory(valueFactory);
+	    
 		apellido_label.setText(rb.getString("apellido_label"));
 		fechaInicio_label.setText(rb.getString("fechaInicio_label"));
 		fechaFin_label.setText(rb.getString("fechaFin_label"));
@@ -201,7 +215,6 @@ public class controllerAgregarCliente implements Initializable {
 	}
 	
 	private void crearCliente(){
-		
 		String name = text_nc_nombre.getText();
 		String lastname = text_nc_apellido.getText();
 		String type = text_nc_tipocuenta.getText();
@@ -212,6 +225,7 @@ public class controllerAgregarCliente implements Initializable {
 		String birthDate = text_nc_fechanacimiento.getText(); 
 		String days[] = getDays();
 		int hour = getHours();
+		//int idplan = spinner_plan
 		//Cliente escalador = new Cliente(name,lastname,type,startDate,mail,sex,phone,birthDate, days, hour); 
 	}
 	

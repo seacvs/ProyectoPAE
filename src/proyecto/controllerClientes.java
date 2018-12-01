@@ -40,7 +40,8 @@ public class controllerClientes implements Initializable {
 	
 	@FXML private Label nombre_label;
 	@FXML private Label estatus_label;
-	@FXML private Label tipoPlan_label, label_plan;
+	@FXML private Label tipoPlan_label;
+	@FXML private Label label_plan;
 	@FXML private Label fechaInicio_label, label_fi;
 	@FXML private Label fechaFin_label, label_ff;
 	@FXML private Label mail_label, label_mail;
@@ -86,7 +87,6 @@ public class controllerClientes implements Initializable {
 			new Cliente ("6","Kardashan", "Kim","Activo", "Clase", "Mujer")	
 		);
 		
-		
 		id_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("id"));
 		apellido_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("lastname"));
 		nombre_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("name"));
@@ -95,7 +95,6 @@ public class controllerClientes implements Initializable {
 		sexo_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("sexo"));
 		
 		tableView_table.setItems(data);
-		
 		
 		buscarBtn.setText(rb.getString("buscarBtn"));
 		editarBtn.setText(rb.getString("editarBtn"));
@@ -137,7 +136,6 @@ public class controllerClientes implements Initializable {
 		estatus_label.setText("Inactivo");
 
 	}
-	
 	
 	public Label getNombre_label() {
 		return nombre_label;
@@ -217,7 +215,6 @@ public class controllerClientes implements Initializable {
 		try {
 			agregarNuevo = FXMLLoader.load(getClass().getResource("nuevoCliente.fxml"));
 			ameyalli.getInstance().setCenter(agregarNuevo);
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
