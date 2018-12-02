@@ -20,7 +20,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     private SimpleStringProperty hora;
 
     public Cliente() {
-        super();
+
     }
 
     public Cliente(String id, String name, String lastname, String estatus, String mail, String fechaNacimiento,
@@ -90,7 +90,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setEstatus(String estatus) {
-        this.estatus.set(estatus);
+        this.estatus = new SimpleStringProperty(estatus);
     }
 
     public String getId() {
@@ -98,7 +98,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setId(String id) {
-        this.id.set(id);
+        this.id = new SimpleStringProperty(id);
     }
 
 
@@ -107,7 +107,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setName(String name) {
-        this.name.set(name);
+        this.name = new SimpleStringProperty(name);
     }
 
     public String getLastname() {
@@ -115,7 +115,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setLastname(String lastname) {
-        this.lastname.set(lastname);
+        this.lastname = new SimpleStringProperty(lastname);
     }
 
     public String getMail() {
@@ -123,7 +123,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setMail(String mail) {
-        this.mail.set(mail);
+        this.mail = new SimpleStringProperty(mail);
     }
 
     public String getFechaNacimiento() {
@@ -131,7 +131,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento.set(fechaNacimiento);;
+        this.fechaNacimiento = new SimpleStringProperty(fechaNacimiento);
     }
 
     public String getTelefono() {
@@ -139,7 +139,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setTelefono(String telefono) {
-        this.telefono.set(telefono);;
+        this.telefono = new SimpleStringProperty(telefono);
     }
 
     public String getPlan() {
@@ -147,7 +147,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setPlan(String plan) {
-        this.plan.get();
+        this.plan = new SimpleStringProperty(plan);
     }
 
     public String getSexo() {
@@ -155,7 +155,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setSexo(String sexo) {
-        this.sexo.set(sexo);;
+        this.sexo = new SimpleStringProperty(sexo);
     }
 
     public String getFechaInicio() {
@@ -163,7 +163,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio.set(fechaInicio);
+        this.fechaInicio = new SimpleStringProperty(fechaInicio);
     }
 
     public String getFechaFin() {
@@ -175,7 +175,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setFechaFin(String fechaFin) {
-        this.fechaFin.set(fechaFin);
+        this.fechaFin = new SimpleStringProperty(fechaFin);
     }
 
     public String getHora() {
@@ -183,6 +183,6 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
     }
 
     public void setHora(String hora) {
-        this.hora.set(hora);
+        this.hora = new SimpleStringProperty(hora);
     }
 }

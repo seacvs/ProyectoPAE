@@ -11,9 +11,9 @@ public class DBConnection {
  
     private static Connection connection = null;
  
-    private final static String DB_NAME = "pae";
-    private final static String USERNAME = "sebas";
-    private final static String PASSWORD = "sebastian96";
+    private final static String DB_NAME = "test1";
+    private final static String USERNAME = "root";
+    private final static String PASSWORD = "password";
  
     public DBConnection() {
         createConnection();
@@ -35,7 +35,7 @@ public class DBConnection {
     }
  
     /*
-        cumpleaños en formato yyyy-mm-dd
+        cumpleaï¿½os en formato yyyy-mm-dd
      */
     protected void addClient(String lastName, String firstName, String email, String birthday, Long phone) {
         try {
@@ -314,7 +314,7 @@ public class DBConnection {
  
     }
  
-    protected Cliente getClient(String firstName, String lastName) {
+    protected Cliente getClientByName(String firstName, String lastName) {
         int resPlanID = 0;
  
         Cliente cliente = new Cliente();
@@ -348,7 +348,41 @@ public class DBConnection {
  
         return cliente;
     }
- 
+
+    protected Cliente getClientByID(String id) {
+        int resPlanID = 0;
+
+        Cliente cliente = new Cliente();
+
+        try {
+            Statement st1 = connection.createStatement();
+            ResultSet rs1 = st1.executeQuery("SELECT id_Plan, apellido, nombre, mail, fecha_nac, telefono FROM cliente WHERE id_cliente = '" + id + "'");
+
+            while (rs1.next()) {
+                resPlanID = rs1.getInt("id_plan"); // Se pone el indice de la col o el nombre de esta
+                cliente.setLastname(rs1.getString("apellido"));
+                cliente.setName(rs1.getString("nombre"));
+                cliente.setMail(rs1.getString("mail"));
+                cliente.setFechaNacimiento(rs1.getString("fecha_nac"));
+                cliente.setTelefono(String.valueOf(rs1.getLong("telefono")));
+            }
+
+            st1.close();
+            rs1.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        Plan plan = getPlan(resPlanID);
+        cliente.setPlan(plan.getPlanType());
+        cliente.setFechaInicio(plan.getStart());
+        cliente.setFechaFin(plan.getEnd());
+        cliente.setEstatus((plan.isStatus() ? "Activo" : "Inactivo"));
+        cliente.setHora(plan.getHour());
+
+        return cliente;
+    }
+
     private Plan getPlan(Integer planID) {
         int resClassID = 0;
         Plan plan = new Plan();
@@ -360,8 +394,8 @@ public class DBConnection {
             while (rs1.next()) {
                 resClassID = rs1.getInt("id_clase"); // Se pone el indice de la col o el nombre de esta
                 plan.setPlanType(rs1.getString("tipo_plan"));
-                plan.setStart("fecha_in");
-                plan.setEnd("fecha_fn");
+                plan.setStart(rs1.getString("fecha_in"));
+                plan.setEnd(rs1.getString("fecha_fn"));
                 plan.setStatus(rs1.getBoolean("estatus"));
             }
             st1.close();
@@ -384,7 +418,7 @@ public class DBConnection {
  
         try {
             Statement st1 = connection.createStatement();
-            ResultSet rs1 = st1.executeQuery("SELECT dia, hora FROM plan WHERE id_clase = '" + classID + "'");
+            ResultSet rs1 = st1.executeQuery("SELECT dia, hora FROM clase WHERE id_clase = '" + classID + "'");
  
             while (rs1.next()) {
                 resDay = rs1.getString("dia"); // Se pone el indice de la col o el nombre de esta
