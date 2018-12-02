@@ -74,6 +74,7 @@ public class controllerEditarCliente implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+	//internacionalizacion	
 			ec_nombre_label.setText(rb.getString("nombre_label"));
 			tipoPlan_label.setText(rb.getString("tipoPlan_label"));
 			apellido_label.setText(rb.getString("apellido_label"));
@@ -90,11 +91,19 @@ public class controllerEditarCliente implements Initializable {
 			jueves_label.setText(rb.getString("jueves"));
 			viernes_label.setText(rb.getString("viernes"));
 			editarCliente_label.setText(rb.getString("editarCliente_label"));
-			editarCliente_label.setText(rb.getString("editarCliente_label"));
 			listoBtn.setText(rb.getString("listoBtn"));
 			cancelarBtn.setText(rb.getString("cancelarBtn"));
+	//leer datosd e la BD
+			Cliente cliente = obtenerDatos();
+			
+			
 	}
 	
+	private Cliente obtenerDatos() {
+		// query del id del cliente
+		return null;
+	}
+
 	@FXML 
 	private void cancelar(){
 		HBox listado = null;
@@ -118,6 +127,12 @@ public class controllerEditarCliente implements Initializable {
 			e.printStackTrace();
 		}		
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

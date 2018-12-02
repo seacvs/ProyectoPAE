@@ -46,7 +46,7 @@
                               </Button>
                            </children>
                         </HBox>
-                        <TableView fx:id="tableView_table" prefHeight="620.0" prefWidth="487.0">
+                        <TableView fx:id="tableView_table" onMouseClicked="#clickItem" prefHeight="620.0" prefWidth="487.0">
                           <columns>
                             <TableColumn fx:id="id_table" prefWidth="75.0" text="ID" />
                             <TableColumn fx:id="apellido_table" minWidth="117.99996948242188" prefWidth="117.99996948242188" text="APELLIDO" />

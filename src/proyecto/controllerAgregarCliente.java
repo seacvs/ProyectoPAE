@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -34,7 +33,6 @@ public class controllerAgregarCliente implements Initializable {
 	@FXML private TextField text_nc_nombre;
 	@FXML private TextField text_nc_apellido;
 	@FXML private TextField text_nc_id;
-	@FXML private TextField text_nc_tipocuenta;
 	@FXML private DatePicker text_nc_fi;
 	@FXML private DatePicker text_nc_ff;
 	@FXML private TextField  text_nc_mail;
@@ -105,7 +103,6 @@ public class controllerAgregarCliente implements Initializable {
 		cancelarBtn.setText(rb.getString("cancelarBtn"));
 		checkbox_nc_mujer.setText(rb.getString("mujer"));
 		checkbox_nc_hombre.setText(rb.getString("hombre"));
-		
 	}
 	
 	@FXML 
@@ -114,7 +111,6 @@ public class controllerAgregarCliente implements Initializable {
 		try {
 			listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			ameyalli.getInstance().setCenter(listado);
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -124,7 +120,18 @@ public class controllerAgregarCliente implements Initializable {
 	private void listo(){
 		HBox listado = null;
 		try {
-			//Cliente client = crearCliente();
+			Cliente client = crearCliente();
+			System.out.println(client.toString());
+			if(client.getPlan()=="clases")
+				ameyalli.dbConnection.addPlan(client.getPlan(), client.getHora().toString());
+			ameyalli.dbConnection.addPlan(client.getPlan(),null);
+			ameyalli.dbConnection.addClient(
+					client.getLastname(), 
+					client.getName(),
+					client.getMail(), 
+					client.getFechaNacimiento(),
+					Long.getLong(client.getTelefono()));
+			
 			listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			ameyalli.getInstance().setCenter(listado);
 			
@@ -140,7 +147,6 @@ public class controllerAgregarCliente implements Initializable {
 			checkbox_nc_hombre.setSelected(true);
 		}else
 			checkbox_nc_hombre.setSelected(true);
-
 	}
 	
 	@FXML 
@@ -214,10 +220,10 @@ public class controllerAgregarCliente implements Initializable {
 		return goodDays;
 	}
 	
-	private void crearCliente(){
+	private Cliente crearCliente(){
 		String name = text_nc_nombre.getText();
 		String lastname = text_nc_apellido.getText();
-		String type = text_nc_tipocuenta.getText();
+		String plan = spinner_plan.getValue();
 		String startDate = LocalDate.now().toString();
 		String mail = text_nc_mail.getText();
 		String sex = getSexClient();
@@ -225,8 +231,9 @@ public class controllerAgregarCliente implements Initializable {
 		String birthDate = text_nc_fechanacimiento.getText(); 
 		String days[] = getDays();
 		int hour = getHours();
-		//int idplan = spinner_plan
-		//Cliente escalador = new Cliente(name,lastname,type,startDate,mail,sex,phone,birthDate, days, hour); 
+		String hora = "hour"+":00"; 
+		Cliente escalador = new Cliente(name,lastname,plan,mail,birthDate,phone,startDate,hora); 
+		return escalador;
 	}
 	
 }

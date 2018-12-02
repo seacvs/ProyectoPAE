@@ -22,7 +22,20 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
 	public Cliente() {
 		super();
 	}
-
+	
+	
+	public Cliente(String name, String lastname,String plan, String mail, String fechaNacimiento,
+			String telefono,String fechaInicio, String hora) {
+		super();
+		this.name = new SimpleStringProperty(name);
+		this.lastname = new SimpleStringProperty(lastname);
+		this.mail = new SimpleStringProperty(mail);
+		this.fechaNacimiento = new SimpleStringProperty(fechaNacimiento);
+		this.telefono = new SimpleStringProperty(telefono);
+		this.fechaInicio = new SimpleStringProperty(fechaInicio);
+		this.hora = new SimpleStringProperty(hora);
+	}
+	
 	public Cliente(String id, String name, String lastname, String estatus, String mail, String fechaNacimiento,
 			String telefono, String sexo,String fechaInicio,String fechaFin,String hora) {
 		super();
@@ -132,6 +145,22 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
 
 	public void setFechaInicio(String fechaInicio) {
 		this.fechaInicio.set(fechaInicio);
+	}
+
+	public SimpleStringProperty getHora() {
+		return hora;
+	}
+
+	public void setHora(SimpleStringProperty hora) {
+		this.hora = hora;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Cliente [name=" + name + ", lastname=" + lastname + ", mail=" + mail + ", fechaNacimiento="
+				+ fechaNacimiento + ", telefono=" + telefono + ", plan=" + plan + ", sexo=" + sexo + ", hora=" + hora
+				+ "]";
 	}
 	
 	

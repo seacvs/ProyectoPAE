@@ -33,15 +33,17 @@ public class DBConnection {
         return false;
     }
 
-    protected static void addClient(Integer idPlan, String lastName, String firstName, String email, String birthday, Long phone) {
+    /*
+        cumpleaños en formato yyyy-mm-dd
+     */
+    protected void addClient(String lastName, String firstName, String email, String birthday, Long phone) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO cliente(id_Plan, apellido, nombre, mail, fecha_nac, telefono) VALUES(?, ?, ?, ?, ?, ?)");
-            preparedStatement.setInt(1, idPlan);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setString(3, firstName);
-            preparedStatement.setString(4, email);
-            preparedStatement.setString(5, birthday);
-            preparedStatement.setLong(6, phone);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO cliente(id_Plan, apellido, nombre, mail, fecha_nac, telefono) VALUES((SELECT id_plan FROM plan ORDER BY id_plan DESC LIMIT 1), ?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, lastName);
+            preparedStatement.setString(2, firstName);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, birthday);
+            preparedStatement.setLong(5, phone);
             preparedStatement.execute();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -63,7 +65,7 @@ public class DBConnection {
         }
     }
 
-    protected static void addCategory(String name, String description) {
+    protected void addCategory(String name, String description) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO categoria(nombre, descripcion) VALUES(?, ?)");
             preparedStatement.setString(1, name);
@@ -75,9 +77,27 @@ public class DBConnection {
         }
     }
 
-    protected static void addPlan(String name) {
+    /*
+     Agregar la hora ne formato hh:mm
+     */
+    private void addClass(String dia, String hora) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clase(dia, hora) VALUES(?, ?)");
+            preparedStatement.setString(1, dia);
+            preparedStatement.setString(2, hora);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+        Hora en formato hh:mm
+     */
+    protected void addPlan(String planName, String time) {
         int sumDays = 0;
-        switch (name.toLowerCase()) {
+        switch (planName.toLowerCase()) {
             case "clases":
             case "macroplan":
             case "membresia":
@@ -103,11 +123,12 @@ public class DBConnection {
         String endDate = formatter2.format(end);
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO plan(tipo_plan, fecha_in, fecha_fn, estatus) VALUES(?, ?, ?, ?)");
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, startDate);
-            preparedStatement.setString(3, endDate);
-            preparedStatement.setBoolean(4, true);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO plan(tipo_plan, fecha_in, fecha_fn, estatus) VALUES((SELECT id_clase FROM clase WHERE hora = ? ), ?, ?, ?, ?)");
+            preparedStatement.setString(1, time);
+            preparedStatement.setString(2, planName);
+            preparedStatement.setString(3, startDate);
+            preparedStatement.setString(4, endDate);
+            preparedStatement.setBoolean(5, true);
             preparedStatement.execute();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -115,11 +136,10 @@ public class DBConnection {
         }
     }
 
-    protected static void addInvoice(Integer idCliente, String date) {
+    protected void addInvoice(Integer idCliente) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO factura(id_Cliente, fecha) VALUES(?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO factura(id_Cliente, fecha) VALUES(?, current_date())");
             preparedStatement.setInt(1, idCliente);
-            preparedStatement.setString(2, date);
             preparedStatement.execute();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -127,9 +147,9 @@ public class DBConnection {
         }
     }
 
-    protected static void addProductInvoice(Integer idProduct, Integer idInvoice, Integer quantity, Double price) {
+    protected void addProductInvoice(Integer idProduct, Integer idInvoice, Integer quantity, Double price) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO factura(id_Producto, id_Factura, cantidad, precio) VALUES(?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO producto_factura(id_Producto, id_Factura, cantidad, precio) VALUES(?, ?, ?, ?)");
             preparedStatement.setInt(1, idProduct);
             preparedStatement.setInt(2, idInvoice);
             preparedStatement.setInt(3, quantity);
@@ -141,100 +161,78 @@ public class DBConnection {
         }
     }
 
-    protected static void updateClient(Integer idPlan, String lastName, String firstName, String email, String birthday, Long phone) {
+    protected void updateClient(Integer idPlan, String lastName, String firstName, String email, String birthday, Long phone) {
         String updateClient = "UPDATE cliente" +
-                "        SET id_plan = " + idPlan + ", apellido = '" + lastName + "', nombre = '" + firstName + "', mail = '" + email + "', fecha_nac = '" + birthday + "', telefono = " + phone + "," +
+                "        SET id_plan = " + idPlan + ", apellido = '" + lastName + "', nombre = '" + firstName + "', mail = '" +
+                email + "', fecha_nac = '" + birthday + "', telefono = " + phone + "," +
                 "        WHERE nombre = '" + firstName + "'";
 
         executeQuery(updateClient);
     }
 
-    protected static void getUsers() {
-        try {
-            Statement st1 = connection.createStatement();
-            ResultSet rs1 = st1.executeQuery("SELECT * FROM users");
-
-            while (rs1.next()) {
-                String name = rs1.getString("name"); // Se pone el indice de la col o el nombre de esta
-                System.out.println(name);
-            }
-            st1.close();
-            rs1.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected static void createTables() {
-        String tablePlan = "CREATE TABLE plan(" +
-                "    id_plan     int not null primary key AUTO_INCREMENT," +
-                "    tipo_plan   char(10)," +
-                "    fecha_in    date," +
-                "    fecha_fn    date," +
-                "    estatus     bool" +
+    private static void createTables() {
+        String tableClass = "CREATE TABLE clase(\n" +
+                "    id_Clase    int not null primary key auto_increment,\n" +
+                "    dia         varchar(20),\n" +
+                "    hora        time\n" +
                 "    )";
 
-        String tableClient = "CREATE TABLE cliente(" +
-                "    id_cliente  int not null primary key AUTO_INCREMENT," +
-                "    id_plan     int not null ," +
-                "    apellido    varchar(30)," +
-                "    nombre      varchar(20)," +
-                "    mail        varchar (25)," +
-                "    fecha_nac   date," +
-                "    telefono    numeric(10,0)," +
-                "    foreign key (id_plan) references plan(id_plan)" +
+        String tablePlan = "CREATE TABLE plan(\n" +
+                "    id_Plan     int not null primary key auto_increment,\n" +
+                "    id_Clase    int not null,\n" +
+                "    tipo_plan   char(10),\n" +
+                "    fecha_in    date,\n" +
+                "    fecha_fn    date,\n" +
+                "    estatus     bool,\n" +
+                "    foreign key (id_Clase) references Clase(id_Clase)\n" +
                 "    )";
 
-        String tableCategory = "CREATE TABLE categoria(" +
-                "    id_categoria    int not null primary key AUTO_INCREMENT," +
-                "    nombre          varchar(20)," +
-                "    descripcion     varchar(30)" +
+        String tableClient = "CREATE TABLE cliente(\n" +
+                "    id_Cliente  int not null primary key auto_increment,\n" +
+                "    id_Plan     int not null ,\n" +
+                "    apellido    varchar(30),\n" +
+                "    nombre      varchar(20),\n" +
+                "    mail        varchar (25),\n" +
+                "    fecha_nac   date,\n" +
+                "    telefono    numeric(10,0),\n" +
+                "    foreign key (id_Plan) references Plan(id_Plan)\n" +
+                "    )";
+
+        String tableCategory = "CREATE TABLE categoria(\n" +
+                "    id_Categoria    int not null primary key auto_increment,\n" +
+                "    nombre          varchar(20),\n" +
+                "    descripcion     varchar(30)\n" +
                 ")";
 
-        String tableProduct = "CREATE TABLE producto(" +
-                "    id_producto int not null primary key AUTO_INCREMENT," +
-                "    id_categoria int not null," +
-                "    stock       int," +
-                "    precio      decimal (19,4)," +
-                "    nombre      varchar(20)," +
-                "    foreign key (id_Categoria) references categoria(id_Categoria)" +
+        String tableProduct = "CREATE TABLE producto(\n" +
+                "    id_Producto int not null primary key auto_increment,\n" +
+                "    id_Categoria int not null,\n" +
+                "    stock       int,\n" +
+                "    precio      decimal (19,4),\n" +
+                "    nombre      varchar(20),\n" +
+                "    foreign key (id_Categoria) references Categoria(id_Categoria)\n" +
                 "    )";
 
-        String tableDay = "CREATE TABLE dia(" +
-                "    id_dia      int not null primary key AUTO_INCREMENT," +
-                "    dia         varchar(10)," +
-                "    hora        time" +
-                ")";
-
-        String tableSchedule = "CREATE TABLE horario(" +
-                "    id_horario  int not null primary key AUTO_INCREMENT," +
-                "    id_dia      int not null," +
-                "    id_plan     int not null," +
-                "    foreign key (id_dia) references dia(id_dia)," +
-                "    foreign key (id_plan) references plan(id_plan)" +
+        String tableInvoice = "CREATE TABLE factura(\n" +
+                "    id_Factura  int not null primary key auto_increment,\n" +
+                "    id_Cliente  int not null,\n" +
+                "    fecha       date,\n" +
+                "    foreign key (id_Cliente) references Cliente(id_Cliente)\n" +
                 "    )";
 
-        String tableInvoice = "CREATE TABLE factura(" +
-                "    id_factura  int not null primary key AUTO_INCREMENT," +
-                "    id_cliente  int not null," +
-                "    fecha       date," +
-                "    foreign key (id_cliente) references cliente(id_cliente)" +
-                "    )";
+        String tableProductInvoice = "CREATE TABLE Producto_Factura(\n" +
+                "    id_Producto_Factura int not null primary key auto_increment,\n" +
+                "    id_Producto         int not null,\n" +
+                "    id_Factura          int not null,\n" +
+                "    cantidad            int,\n" +
+                "    precio              decimal(19,4)\n" +
+                ");";
 
-        String tableProductInvoice = "CREATE TABLE producto_factura(" +
-                "    id_producto_Factura int not null primary key AUTO_INCREMENT," +
-                "    id_producto         int not null," +
-                "    id_factura          int not null," +
-                "    cantidad            int," +
-                "    precio              decimal(19,4)" +
-                ")";
-
+        executeQuery(tableClass);
         executeQuery(tablePlan);
         executeQuery(tableClient);
         executeQuery(tableCategory);
         executeQuery(tableProduct);
-        executeQuery(tableDay);
-        executeQuery(tableSchedule);
         executeQuery(tableInvoice);
         executeQuery(tableProductInvoice);
     }
@@ -265,7 +263,7 @@ public class DBConnection {
         }
     }
 
-    private static void closeConnection() {
+    protected void closeConnection() {
         try {
 //            if (rs != null) rs.close();
 //            if (statement != null) statement.close();
@@ -274,5 +272,22 @@ public class DBConnection {
             e.printStackTrace();
         }
     }
+//
+//    protected void getClients() {
+//        try {
+//            Statement st1 = connection.createStatement();
+//            ResultSet rs1 = st1.executeQuery("SELECT * FROM users");
+//
+//            while (rs1.next()) {
+//                String name = rs1.getString("name"); // Se pone el indice de la col o el nombre de esta
+//                System.out.println(name);
+//            }
+//            st1.close();
+//            rs1.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
 
 }

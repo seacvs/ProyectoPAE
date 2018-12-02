@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 public class ameyalli extends Application {
 	private static ameyalli instancia;
 	public static ResourceBundle rb;
-	
+	public static DBConnection dbConnection;
 	
 	private Scene scene; 
 	private Stage primaryStage = new Stage();
@@ -62,6 +62,7 @@ public class ameyalli extends Application {
 	public void init() throws Exception{
 		super.init();
 		ameyalli.instancia = this;
+		dbConnection = new DBConnection();
 	}
 	
 	public void setScene(Pane node) {
