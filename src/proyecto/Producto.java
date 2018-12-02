@@ -9,14 +9,14 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Producto {
 
-    private SimpleIntegerProperty id_Producto;
-    private SimpleIntegerProperty id_Categoria;
-    private SimpleIntegerProperty stock;
-    private SimpleFloatProperty precio;
-    private SimpleStringProperty nombre;
+    private int id_Producto;
+    private int id_Categoria;
+    private int stock;
+    private float precio;
+    private String nombre;
 
 
-    public Producto(SimpleIntegerProperty id_Producto, SimpleIntegerProperty id_Categoria, SimpleIntegerProperty stock, SimpleFloatProperty precio, SimpleStringProperty nombre) {
+    public Producto(int id_Producto, int id_Categoria, int stock, float precio, String nombre) {
 
         this.id_Producto = id_Producto;
         this.id_Categoria = id_Categoria;
