@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
@@ -28,7 +27,7 @@
                         <Font name="System Bold" size="25.0" />
                      </font>
                      <BorderPane.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        <Insets bottom="15.0" left="30.0" right="15.0" top="15.0" />
                      </BorderPane.margin>
                   </Label>
                </top>
@@ -37,23 +36,23 @@
                      <children>
                         <Label fx:id="nc_nombre_label" text="Nombre" textAlignment="CENTER">
                            <padding>
-                              <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <FlowPane.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="text_nc_nombre" prefHeight="27.0" prefWidth="249.0" translateX="-30.0">
+                        <TextField fx:id="text_nc_nombre" prefHeight="27.0" prefWidth="232.0" translateX="-30.0">
                            <FlowPane.margin>
                               <Insets bottom="15.0" left="15.0" top="15.0" />
                            </FlowPane.margin>
                         </TextField>
                         <Label fx:id="apellido_label" text="Apellidos" textAlignment="CENTER" translateY="5.0">
                            <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
                            </padding>
                            <FlowPane.margin>
-                              <Insets bottom="15.0" left="15.0" />
+                              <Insets bottom="15.0" left="5.0" />
                            </FlowPane.margin>
                         </Label>
                         <TextField fx:id="text_nc_apellido" layoutX="190.0" layoutY="43.0" prefHeight="27.0" prefWidth="259.0" translateY="5.0">
@@ -70,24 +69,6 @@
                            </padding>
                         </Label>
                         <Spinner fx:id="spinner_plan" prefHeight="25.0" prefWidth="233.0" />
-                        <Label fx:id="fechaInicio_label" text="Fecha de inicio" translateY="-5.0" wrapText="true">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <FlowPane.margin>
-                              <Insets left="30.0" />
-                           </FlowPane.margin>
-                        </Label>
-                        <DatePicker fx:id="text_nc_fi" prefHeight="27.0" prefWidth="235.0" translateY="-5.0" />
-                        <Label fx:id="fechaFin_label" text="Fecha de fin">
-                           <FlowPane.margin>
-                              <Insets bottom="5.0" left="15.0" />
-                           </FlowPane.margin>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </Label>
-                        <DatePicker fx:id="text_nc_ff" prefHeight="27.0" prefWidth="155.0" translateY="-5.0" />
                         <Label fx:id="mail_label" text="Mail">
                            <FlowPane.margin>
                               <Insets bottom="5.0" left="15.0" />
@@ -96,9 +77,9 @@
                               <Insets bottom="5.0" left="12.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="text_nc_mail" prefHeight="27.0" prefWidth="222.0">
+                        <TextField fx:id="text_nc_mail" prefHeight="27.0" prefWidth="247.0">
                            <FlowPane.margin>
-                              <Insets bottom="5.0" right="50.0" />
+                              <Insets bottom="5.0" right="20.0" />
                            </FlowPane.margin>
                         </TextField>
                         <Label fx:id="sexo_label" text="Sexo">
@@ -106,10 +87,10 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <FlowPane.margin>
-                              <Insets right="5.0" />
+                              <Insets />
                            </FlowPane.margin>
                         </Label>
-                        <RadioButton fx:id="checkbox_nc_mujer" mnemonicParsing="false" onAction="#rbMujer" text="Mujer">
+                        <RadioButton fx:id="checkbox_nc_mujer" mnemonicParsing="false" onAction="#rbMujer" prefHeight="17.0" prefWidth="63.0" text="Mujer">
                            <FlowPane.margin>
                               <Insets right="5.0" />
                            </FlowPane.margin>
@@ -120,7 +101,7 @@
                               <Insets bottom="5.0" left="25.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="text_nc_fechanacimiento" prefHeight="27.0" prefWidth="259.0">
+                        <TextField fx:id="text_nc_fechanacimiento" alignment="CENTER" prefHeight="27.0" prefWidth="120.0" promptText="YYYY-MM-DD">
                            <padding>
                               <Insets top="10.0" />
                            </padding></TextField>
@@ -129,7 +110,7 @@
                               <Insets bottom="5.0" left="25.0" right="5.0" top="5.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="text_nc_telefono" prefHeight="27.0" prefWidth="240.0" />
+                        <TextField fx:id="text_nc_telefono" prefHeight="27.0" prefWidth="189.0" />
                      </children>
                      <BorderPane.margin>
                         <Insets left="50.0" />

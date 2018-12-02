@@ -7,22 +7,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="body" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerMenu">
+<BorderPane id="body" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerMenu">
    <top>
-      <HBox BorderPane.alignment="CENTER">
+      <HBox prefHeight="98.0" prefWidth="1048.0" BorderPane.alignment="CENTER">
          <children>
-            <Label contentDisplay="CENTER" graphicTextGap="10.0" prefHeight="50.0" prefWidth="250.0" text="ROCÓDROMO AMEYALLI" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="lbl_ameyalli" contentDisplay="CENTER" graphicTextGap="10.0" prefHeight="86.0" prefWidth="344.0" text="ROCÓDROMO AMEYALLI" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
                </padding>
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
                <font>
-                  <Font size="20.0" />
+                  <Font size="26.0" />
                </font>
             </Label>
-            <Button fx:id="gymBtn" alignment="CENTER" mnemonicParsing="false" onAction="#gymInit" prefHeight="20.0" prefWidth="80.0" styleClass="menu-btn" text="GYM" textAlignment="CENTER">
+            <Button fx:id="gymBtn" alignment="CENTER" mnemonicParsing="false" onAction="#gymInit" prefHeight="41.0" prefWidth="110.0" styleClass="menu-btn" text="GYM" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="15.0" left="15.0" top="15.0" />
                </HBox.margin>
@@ -30,7 +30,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button fx:id="tiendaBtn" alignment="CENTER" layoutX="288.0" layoutY="10.0" mnemonicParsing="false" onAction="#tiendaInit" prefHeight="47.0" prefWidth="80.0" styleClass="menu-btn" text="TIENDA">
+            <Button fx:id="tiendaBtn" alignment="CENTER" layoutX="288.0" layoutY="10.0" mnemonicParsing="false" onAction="#tiendaInit" prefHeight="57.0" prefWidth="111.0" styleClass="menu-btn" text="TIENDA" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>
@@ -41,7 +41,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="estBtn" alignment="CENTER" layoutX="340.0" layoutY="10.0" mnemonicParsing="false" onAction="#estadisticasInit" prefHeight="47.0" prefWidth="129.0" styleClass="menu-btn" text="ESTADISTICAS">
+            <Button fx:id="estBtn" alignment="CENTER" layoutX="340.0" layoutY="10.0" mnemonicParsing="false" onAction="#estadisticasInit" prefHeight="47.0" prefWidth="129.0" styleClass="menu-btn" text="ESTADISTICAS" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>
@@ -49,7 +49,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Button>
-            <Button fx:id="ajustesBtn" alignment="CENTER" layoutX="392.0" layoutY="10.0" mnemonicParsing="false" onAction="#ajustesInit" prefHeight="57.0" prefWidth="85.0" styleClass="menu-btn" text="Es / En">
+            <Button fx:id="ajustesBtn" alignment="CENTER" layoutX="392.0" layoutY="10.0" mnemonicParsing="false" onAction="#ajustesInit" prefHeight="57.0" prefWidth="82.0" styleClass="menu-btn" text="Es / En" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>

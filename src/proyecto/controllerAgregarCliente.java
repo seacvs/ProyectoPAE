@@ -33,8 +33,6 @@ public class controllerAgregarCliente implements Initializable {
 	@FXML private TextField text_nc_nombre;
 	@FXML private TextField text_nc_apellido;
 	@FXML private TextField text_nc_id;
-	@FXML private DatePicker text_nc_fi;
-	@FXML private DatePicker text_nc_ff;
 	@FXML private TextField  text_nc_mail;
 	@FXML private RadioButton  checkbox_nc_mujer;
 	@FXML private RadioButton  checkbox_nc_hombre;
@@ -86,8 +84,6 @@ public class controllerAgregarCliente implements Initializable {
 	    spinner_plan.setValueFactory(valueFactory);
 	    
 		apellido_label.setText(rb.getString("apellido_label"));
-		fechaInicio_label.setText(rb.getString("fechaInicio_label"));
-		fechaFin_label.setText(rb.getString("fechaFin_label"));
 		mail_label.setText(rb.getString("mail_label"));
 		sexo_label.setText(rb.getString("sexo_label"));
 		fechaNacimiento_label.setText(rb.getString("nacimiento_label"));

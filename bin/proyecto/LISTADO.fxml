@@ -18,17 +18,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="748.0" prefWidth="1427.0" styleClass="label" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerClientes">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="748.0" prefWidth="1427.0" styleClass="label" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controllerClientes">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" HBox.hgrow="ALWAYS">
          <content>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox fx:id="vboxDatos" prefHeight="789.0" prefWidth="553.0">
+                  <VBox fx:id="vboxDatos" prefHeight="709.0" prefWidth="626.0">
                      <children>
                         <HBox prefHeight="67.0" prefWidth="602.0">
                            <children>
-                              <TextField fx:id="buscar_textField" prefHeight="37.0" prefWidth="464.0" promptText="Buscar cliente" >
+                              <TextField fx:id="buscar_textField" prefHeight="37.0" prefWidth="464.0" promptText="Buscar cliente">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
@@ -46,21 +46,24 @@
                               </Button>
                            </children>
                         </HBox>
-                        <TableView fx:id="tableView_table" onMouseClicked="#clickItem" prefHeight="620.0" prefWidth="487.0">
+                        <TableView fx:id="tableView_table" onMouseClicked="#clickItem" prefHeight="620.0" prefWidth="598.0">
                           <columns>
-                            <TableColumn fx:id="id_table" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="apellido_table" minWidth="117.99996948242188" prefWidth="117.99996948242188" text="APELLIDO" />
-                              <TableColumn fx:id="nombre_table" minWidth="137.0" prefWidth="137.0" text="NOMBRE" />
-                              <TableColumn fx:id="estatus_table" prefWidth="61.0" text="ESTATUS" />
-                              <TableColumn fx:id="plan_table" minWidth="30.0" prefWidth="97.0" text="PLAN" />
-                              <TableColumn fx:id="sexo_table" prefWidth="64.0" text="SEXO" />
+                            <TableColumn fx:id="id_table" prefWidth="56.000030517578125" text="ID" />
+                            <TableColumn fx:id="apellido_table" minWidth="116.0" prefWidth="116.0" text="APELLIDO" />
+                              <TableColumn fx:id="nombre_table" minWidth="120.0" prefWidth="120.0" text="NOMBRE" />
+                              <TableColumn fx:id="estatus_table" prefWidth="92.0" text="ESTATUS" />
+                              <TableColumn fx:id="plan_table" minWidth="30.0" prefWidth="119.0" text="PLAN" />
+                              <TableColumn fx:id="sexo_table" prefWidth="103.0" text="SEXO" />
                           </columns>
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
                         </TableView>
                      </children>
                   </VBox>
-                  <VBox prefHeight="746.0" prefWidth="775.0" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="680.0" prefWidth="826.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox prefHeight="161.0" prefWidth="872.0">
+                        <HBox prefHeight="173.0" prefWidth="777.0">
                            <children>
                               <ImageView fitHeight="113.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
@@ -92,14 +95,14 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <VBox>
+                        <VBox prefHeight="442.0" prefWidth="747.0">
                            <VBox.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </VBox.margin>
                            <children>
-                              <FlowPane fx:id="flowPaneDatos" maxWidth="1.7976931348623157E308" prefHeight="419.0" prefWidth="761.0" prefWrapLength="200.0">
+                              <FlowPane fx:id="flowPaneDatos" prefHeight="358.0" prefWidth="755.0" prefWrapLength="200.0">
                                  <children>
-                                    <Label fx:id="tipoPlan_label" prefHeight="17.0" prefWidth="172.0" text="Tipo de plan:" textAlignment="CENTER">
+                                    <Label fx:id="tipoPlan_label" prefHeight="17.0" prefWidth="112.0" text="Tipo de plan:" textAlignment="CENTER">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -107,7 +110,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="label_plan" layoutX="10.0" layoutY="10.0" prefWidth="575.0">
+                                    <Label fx:id="label_plan" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="144.0">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -117,13 +120,13 @@
                                     </Label>
                                     <Label fx:id="fechaInicio_label" layoutX="10.0" layoutY="10.0" prefHeight="15.0" prefWidth="95.0" text="Fecha de inicio:" wrapText="true">
                                        <FlowPane.margin>
-                                          <Insets />
+                                          <Insets left="5.0" />
                                        </FlowPane.margin>
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="label_fi" layoutX="160.0" layoutY="10.0" prefWidth="281.0">
+                                    <Label fx:id="label_fi" layoutX="160.0" layoutY="10.0" prefHeight="27.0" prefWidth="162.0">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -142,7 +145,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="label_ff" layoutX="160.0" layoutY="70.0" prefHeight="27.0" prefWidth="331.0">
+                                    <Label fx:id="label_ff" layoutX="160.0" layoutY="70.0" prefHeight="27.0" prefWidth="151.0">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -161,7 +164,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="label_mail" layoutX="160.0" layoutY="130.0" prefHeight="27.0" prefWidth="336.0">
+                                    <Label fx:id="label_mail" layoutX="160.0" layoutY="130.0" prefHeight="27.0" prefWidth="217.0">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -180,7 +183,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="label_sexo" layoutX="160.0" layoutY="250.0" prefHeight="27.0" prefWidth="293.0">
+                                    <Label fx:id="label_sexo" layoutX="160.0" layoutY="250.0" prefHeight="27.0" prefWidth="163.0">
                                        <FlowPane.margin>
                                           <Insets />
                                        </FlowPane.margin>
@@ -196,7 +199,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="label_nacimiento" layoutX="400.0" layoutY="190.0" prefHeight="27.0" prefWidth="242.0">
+                                    <Label fx:id="label_nacimiento" layoutX="400.0" layoutY="190.0" prefHeight="27.0" prefWidth="160.0">
                                        <padding>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
@@ -216,7 +219,7 @@
                                     </Label>
                                     <VBox>
                                        <children>
-                                          <Label fx:id="horario_label" alignment="CENTER" prefHeight="60.0" prefWidth="600.0" text="HORARIO CLASES">
+                                          <Label fx:id="horario_label" alignment="CENTER" prefHeight="60.0" prefWidth="523.0" text="HORARIO CLASES">
                                              <padding>
                                                 <Insets bottom="0.0" left="5.0" right="5.0" top="0.0" />
                                              </padding>
@@ -224,7 +227,7 @@
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                              <VBox.margin>
-                                                <Insets top="30.0" />
+                                                <Insets />
                                              </VBox.margin>
                                           </Label>
                                           <GridPane prefHeight="189.0" prefWidth="440.0">
