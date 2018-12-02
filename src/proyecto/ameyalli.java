@@ -30,6 +30,7 @@ public class ameyalli extends Application {
 	public static FileInputStream fis;
 	public static String strIdioma ="es";
 	public static String fileNamei18;
+	public static String actualCenter;
 	
 	public static ameyalli getInstance() {
 		if(instancia==null)
@@ -43,6 +44,13 @@ public class ameyalli extends Application {
 	
 	public void setCenter(Node node) {
 		pane_root.setCenter(node);
+	}
+	
+	public void setTempCenterName(String name) {
+		actualCenter=name;
+	}
+	public String getTempCenterName() {
+		return actualCenter;
 	}
 	
 	public void setLenguage() throws Exception {
@@ -83,6 +91,7 @@ public class ameyalli extends Application {
 			setRootPane(FXMLLoader.load(getClass().getResource("menu.fxml")));
 			HBox listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			pane_root.setCenter(listado);
+			setTempCenterName("gym");
 			
 			setScene(pane_root);
 			scene.getStylesheets().add("proyecto/styles.css");
@@ -93,20 +102,6 @@ public class ameyalli extends Application {
 		}
 	
 		
-	
-		public void gymLaunch() {
-			HBox listado = null;
-			
-			try {
-				listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
-				pane_root.setCenter((Parent)(listado));
-				Scene scene = new Scene(pane_root);			
-				scene.getStylesheets().add("proyecto/styles.css");
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}		// menu inicial con 4 tabs
-		}
 		
 		public static void main(String[] args) throws IOException {
 			 fis = new FileInputStream("src/resources/i18n/ameyalli.properties");

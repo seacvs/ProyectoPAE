@@ -111,6 +111,8 @@ public class controllerAgregarCliente implements Initializable {
 		try {
 			listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			ameyalli.getInstance().setCenter(listado);
+			ameyalli.getInstance().setTempCenterName("gym");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -136,6 +138,8 @@ public class controllerAgregarCliente implements Initializable {
 			
 			listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			ameyalli.getInstance().setCenter(listado);
+			ameyalli.getInstance().setTempCenterName("gym");
+
 			
 		} catch (IOException e) {
 			e.printStackTrace();

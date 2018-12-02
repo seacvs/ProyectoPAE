@@ -1,6 +1,7 @@
 package proyecto;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.PropertyResourceBundle;
@@ -64,14 +65,52 @@ public class controllerClientes implements Initializable {
 // nombre_label es el titulo del campo 
 // label_nombre_ es el campo a llenar
 	public static ResourceBundle rb;
-
+	 public static FileInputStream fis;
 	
 	public controllerClientes() throws IOException {
 		super();
-		FileInputStream fis = new FileInputStream(ameyalli.getInstance().getLenguage());
+		fis = new FileInputStream(ameyalli.getInstance().getLenguage());
 		rb = new PropertyResourceBundle(fis);
 	}
 
+	
+	public void updateLanguage() throws IOException{
+		try {
+			fis = new FileInputStream(ameyalli.getInstance().getLenguage());
+			rb = new PropertyResourceBundle(fis);
+			buscarBtn.setText(rb.getString("buscarBtn"));
+			editarBtn.setText(rb.getString("editarBtn"));
+			agregarBtn.setText(rb.getString("agregarBtn"));
+			buscar_textField.setPromptText(rb.getString("buscar_textField"));
+			id_table.setText(rb.getString("id_table"));
+			apellido_table.setText(rb.getString("apellido_table"));
+			nombre_table.setText(rb.getString("nombre_table"));
+			estatus_table.setText(rb.getString("estatus_table"));
+			plan_table.setText(rb.getString("plan_table"));
+			sexo_table.setText(rb.getString("sexo_table"));
+			nombre_label.setText(rb.getString("nombre_label"));
+			estatus_label.setText(rb.getString("estatus_label"));
+			
+			tipoPlan_label.setText(rb.getString("tipoPlan_label"));
+			fechaInicio_label.setText(rb.getString("fechaInicio_label"));
+			fechaFin_label.setText(rb.getString("fechaFin_label"));
+			mail_label.setText(rb.getString("mail_label"));
+			sexo_label.setText(rb.getString("sexo_label"));
+			nacimiento_label.setText(rb.getString("nacimiento_label"));
+			telefono_label.setText(rb.getString("telefono_label"));
+			horario_label.setText(rb.getString("horario_label"));
+			lunes.setText(rb.getString("lunes"));
+			martes.setText(rb.getString("martes"));
+			miercoles.setText(rb.getString("miercoles"));
+			jueves.setText(rb.getString("jueves"));
+			viernes.setText(rb.getString("viernes"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	
+	}
+
+	
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {	
 		
@@ -212,6 +251,7 @@ public class controllerClientes implements Initializable {
 		try {
 			agregarNuevo = FXMLLoader.load(getClass().getResource("nuevoCliente.fxml"));
 			ameyalli.getInstance().setCenter(agregarNuevo);
+			ameyalli.getInstance().setTempCenterName("nuevo");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -223,7 +263,7 @@ public class controllerClientes implements Initializable {
 		try {
 			editarCliente = FXMLLoader.load(getClass().getResource("editarCliente.fxml"));
 			ameyalli.getInstance().setCenter(editarCliente);
-			
+			ameyalli.getInstance().setTempCenterName("editar");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		

@@ -5,9 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
-import java.awt.*;
+import javafx.scene.control.Button ;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -20,9 +25,11 @@ import java.util.ResourceBundle;
 public class controllerProductos implements Initializable {
 
     public static ResourceBundle rb;
+    public static FileInputStream fis;
+    
     public controllerProductos() throws IOException {
         super();
-        FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+        fis = new FileInputStream(ameyalli.getInstance().getLenguage());
         rb = new PropertyResourceBundle(fis);
     }
 
@@ -36,19 +43,39 @@ public class controllerProductos implements Initializable {
     @FXML private TextField precio_txt;
 
     //agregar, remover y comprar
-    @FXML private Button add_btn;
     @FXML private Button remove_btn;
     @FXML private Button comprar_btn;
-    @FXML private Button borrarTotal_btn;
-
-    //TextField de compra total
-    @FXML private TextField calculo_txt;
-    @FXML private TextField iva_txt;
-    @FXML private TextField descuento_txt;
-    @FXML private TextField total_txt;
+    @FXML private Button cancelar_btn;
+    @FXML private Button buscar_btn;
+    
+    //Tabla
+	@FXML private TableView<Producto> tableView_table;
+    @FXML private TableColumn<Producto,String> id_table;
+    @FXML private TableColumn<Producto,String> name_table;
+    @FXML private TableColumn<Producto,String> price_table;
+    @FXML private TextField txt_nombreDeProducto;
 
     //Carro de compra
     @FXML private TableColumn<Producto, Float> carrito_table;
+    @FXML private ListView<String>  listView_carro;
+    @FXML private Text lbl_carroDeCompra;
+
+    
+    //Compra total
+    @FXML private TextField txtCalculado;
+    @FXML private TextField txtIVA;
+    @FXML private TextField txt_descuento;
+    @FXML private TextField txtTotal;
+    @FXML private Spinner<String> spinnerFormasDePago;
+    //titulos
+    @FXML private Text lbl_listaDeProdcutos;
+    @FXML private Text lbl_detalleDelProducto;
+    @FXML private Text lbl_Descripcion;
+    @FXML private Text lbl_stock;
+    @FXML private Text lbl_precio;
+    @FXML private Text lbl_metodosDePago;
+    @FXML private Text lbl_compraTotal;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,19 +84,31 @@ public class controllerProductos implements Initializable {
 
 
         //Select para asignar desde la base de datos (falta)
+        
+        remove_btn.setText(rb.getString("remove_btn"));
+        comprar_btn.setText(rb.getString("comprar_btn"));
+        cancelar_btn.setText(rb.getString("cancelar_btn"));
+        buscar_btn.setText(rb.getString("buscar_btn"));
+        id_table.setText(rb.getString("id_table"));
+        name_table.setText(rb.getString("name_table"));
+        price_table.setText(rb.getString("price_table"));
+        lbl_carroDeCompra.setText(rb.getString("lbl_carroDeCompra"));
+        lbl_listaDeProdcutos.setText(rb.getString("lbl_listaDeProdcutos"));
+        lbl_detalleDelProducto.setText(rb.getString("lbl_detalleDelProducto"));
+        lbl_Descripcion.setText(rb.getString("lbl_Descripcion"));
+        lbl_stock.setText(rb.getString("lbl_stock"));
+        lbl_precio.setText(rb.getString("lbl_precio"));
+        lbl_metodosDePago.setText(rb.getString("lbl_metodosDePago"));
+        lbl_compraTotal.setText(rb.getString("lbl_compraTotal"));
+        txt_nombreDeProducto.setPromptText(rb.getString("txt_nombreDeProducto"));
 
-        id_txt.setText(rb.getString(""));
-        descripcion_txt.setText(rb.getString(""));
-        stock_txt.setText(rb.getString(""));
-        precio_txt.setText(rb.getString(""));
-
-        if(carrito_table != null)
-        {
-            calculo_txt.setText(rb.getString(""));
-            iva_txt.setText(rb.getString(""));
-            descuento_txt.setText(rb.getString(""));
-            total_txt.setText(rb.getString(""));
-        }
+      //  if(listView_carro != null)
+      //  {
+        	txtCalculado.setPromptText(rb.getString("txtCalculado"));
+        	txtIVA.setPromptText(rb.getString("txtIVA"));
+        	txt_descuento.setPromptText(rb.getString("txt_descuento"));
+        	txtTotal.setPromptText(rb.getString("txtTotal"));
+       // }
 
     }
 
@@ -78,7 +117,8 @@ public class controllerProductos implements Initializable {
     public void borrar(){
 
     }
-    public void Comprar(){
+    
+    public void comprar(){
 
     }
 
