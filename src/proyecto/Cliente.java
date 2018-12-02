@@ -5,34 +5,42 @@ import javafx.beans.property.SimpleStringProperty;
 public class Cliente {//Clase cliente la cual se usa para llenar la tabla de clientes desde la BD
 	
 	private SimpleStringProperty id;
-	private SimpleStringProperty id_plan;
 	private SimpleStringProperty name;
 	private SimpleStringProperty lastname;
+	private SimpleStringProperty estatus;
+	
 	private SimpleStringProperty mail;
 	private SimpleStringProperty fechaNacimiento;
 	private SimpleStringProperty telefono;
 	private SimpleStringProperty plan;
 	private SimpleStringProperty sexo;
+	
 	private SimpleStringProperty fechaInicio;
-	private SimpleStringProperty estatus;
+	private SimpleStringProperty fechaFin;
+	private SimpleStringProperty hora;
 	
 	public Cliente() {
 		super();
 	}
 
-	public Cliente(String id, String id_plan, String name, String lastname, String mail, String fechaNacimiento,
-			String telefono, String sexo,String fechaInicio) {
+	public Cliente(String id, String name, String lastname, String estatus, String mail, String fechaNacimiento,
+			String telefono, String sexo,String fechaInicio,String fechaFin,String hora) {
 		super();
 		this.id = new SimpleStringProperty(id);
-		this.id_plan = new SimpleStringProperty(id_plan);
 		this.name = new SimpleStringProperty(name);
 		this.lastname = new SimpleStringProperty(lastname);
+		this.estatus = new SimpleStringProperty(estatus);
+		
 		this.mail = new SimpleStringProperty(mail);
 		this.fechaNacimiento = new SimpleStringProperty(fechaNacimiento);
 		this.telefono = new SimpleStringProperty(telefono);
 		this.sexo = new SimpleStringProperty(sexo);
+		
 		this.fechaInicio = new SimpleStringProperty(fechaInicio);
+		this.fechaFin = new SimpleStringProperty(fechaFin);
+		this.hora = new SimpleStringProperty(hora);
 	}
+	
 
 	public Cliente(String id, String lastname, String name, String estatus,String plan, String sexo) {
 		super();
@@ -61,13 +69,6 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
 		this.id.set(id);
 	}
 
-	public String getId_plan() {
-		return id_plan.get();
-	}
-
-	public void setId_plan(String id_plan) {
-		this.id_plan.set(id_plan);
-	}
 
 	public String getName() {
 		return name.get();

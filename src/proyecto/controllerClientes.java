@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,7 +30,6 @@ public class controllerClientes implements Initializable {
 	@FXML private Button buscarBtn;
 	@FXML private TextField buscar_textField;
 	
-	
 	@FXML private TableColumn<Cliente,String> id_table ;
 	@FXML private TableColumn<Cliente,String> apellido_table;
 	@FXML private TableColumn<Cliente,String> nombre_table;
@@ -37,7 +37,6 @@ public class controllerClientes implements Initializable {
 	@FXML private TableColumn<Cliente,String> plan_table;
 	@FXML private TableColumn<Cliente,String> sexo_table;
 
-	
 	@FXML private Label nombre_label;
 	@FXML private Label estatus_label;
 	@FXML private Label tipoPlan_label;
@@ -50,8 +49,6 @@ public class controllerClientes implements Initializable {
 	@FXML private Label telefono_label,label_telefono;
 	@FXML private Label horario_label;
 	@FXML private Label lunes,martes,miercoles,jueves,viernes;
-	
-
 
 	@FXML private CheckBox hlu16, hlu17, hlu18, hlu19, hlu20;
 	@FXML private CheckBox hmi16,hmi17,hmi18,hmi19,hmi20;
@@ -230,6 +227,15 @@ public class controllerClientes implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	@FXML
+	public void clickItem(MouseEvent event)
+	{
+	    if (event.getClickCount() == 2) //Checking double click
+	    {
+	        System.out.println(tableView_table.getSelectionModel().getSelectedItem().getId());
+	    }
 	}
 	
 	
