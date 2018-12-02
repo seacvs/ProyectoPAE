@@ -24,9 +24,9 @@ public class ameyalli extends Application {
 	public static ResourceBundle rb;
 	public static DBConnection dbConnection;
 	
-	private Scene scene; 
-	private Stage primaryStage = new Stage();
-	private BorderPane pane_root;
+	public Scene scene; 
+	public Stage primaryStage = new Stage();
+	public BorderPane pane_root;
 	public static FileInputStream fis;
 	public static String strIdioma ="es";
 	public static String fileNamei18;

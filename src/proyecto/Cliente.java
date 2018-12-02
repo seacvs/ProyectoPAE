@@ -78,6 +78,7 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
 		this.name = new SimpleStringProperty(name);
 		this.lastname = new SimpleStringProperty(lastname);
 		this.mail = new SimpleStringProperty(mail);
+        this.plan = new SimpleStringProperty(plan);
 		this.fechaNacimiento = new SimpleStringProperty(fechaNacimiento);
 		this.telefono = new SimpleStringProperty(telefono);
 		this.fechaInicio = new SimpleStringProperty(fechaInicio);

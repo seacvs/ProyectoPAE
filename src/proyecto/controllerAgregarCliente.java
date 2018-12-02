@@ -77,7 +77,7 @@ public class controllerAgregarCliente implements Initializable {
 		tipoPlan_label.setText(rb.getString("tipoPlan_label"));
 		
 		ObservableList<String> planes = FXCollections.observableArrayList(//
-	               "clases", "macroplan", "membresia", "visita", "becados");
+	               "clase", "macroplan", "membresia", "visita", "becado");
 		  // Value factory.
 	       SpinnerValueFactory<String> valueFactory = //
 	               new SpinnerValueFactory.ListSpinnerValueFactory<String>(planes);
@@ -121,16 +121,18 @@ public class controllerAgregarCliente implements Initializable {
 		HBox listado = null;
 		try {
 			Cliente client = crearCliente();
-			client.toString();
-			if(client.getPlan()=="clases")
-				ameyalli.dbConnection.addPlan(client.getPlan(), client.getHora().toString());
-			ameyalli.dbConnection.addPlan(client.getPlan(),null);
+//			client.toString();
+			if(client.getPlan().toString().equals("clase"))
+				ameyalli.dbConnection.addPlan(client.getPlan(), client.getHora());
+			else
+				ameyalli.dbConnection.addPlan(client.getPlan(),"18:00");
+
 			ameyalli.dbConnection.addClient(
 					client.getLastname(), 
 					client.getName(),
 					client.getMail(), 
 					client.getFechaNacimiento(),
-					Long.getLong(client.getTelefono()));
+					Long.parseLong(client.getTelefono()));
 			
 			listado = FXMLLoader.load(getClass().getResource("listado.fxml"));
 			ameyalli.getInstance().setCenter(listado);

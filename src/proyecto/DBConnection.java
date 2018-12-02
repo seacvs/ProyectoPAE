@@ -1,4 +1,3 @@
-
 package proyecto;
 
 import java.sql.*;
@@ -13,8 +12,8 @@ public class DBConnection {
     private static Connection connection = null;
  
     private final static String DB_NAME = "pae";
-    private final static String USERNAME = "root";
-    private final static String PASSWORD = "password";
+    private final static String USERNAME = "sebas";
+    private final static String PASSWORD = "sebastian96";
  
     public DBConnection() {
         createConnection();
@@ -36,7 +35,7 @@ public class DBConnection {
     }
  
     /*
-        cumpleaÃ±os en formato yyyy-mm-dd
+        cumpleaños en formato yyyy-mm-dd
      */
     protected void addClient(String lastName, String firstName, String email, String birthday, Long phone) {
         try {
@@ -125,7 +124,7 @@ public class DBConnection {
         String endDate = formatter2.format(end);
  
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO plan(tipo_plan, fecha_in, fecha_fn, estatus) VALUES((SELECT id_clase FROM clase WHERE hora = ? ), ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO plan(id_clase, tipo_plan, fecha_in, fecha_fn, estatus) VALUES((SELECT id_clase FROM clase WHERE hora = ? ), ?, ?, ?, ?)");
             preparedStatement.setString(1, time);
             preparedStatement.setString(2, planName);
             preparedStatement.setString(3, startDate);

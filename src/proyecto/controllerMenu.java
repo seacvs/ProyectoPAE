@@ -19,28 +19,29 @@ public class controllerMenu implements Initializable {
 	@FXML private Button estBtn;
 	@FXML private Button ajustesBtn;
 	@FXML private Button tiendaBtn;
-
-	
+	FileInputStream fis;
+	ResourceBundle  rb;
 	
 	public controllerMenu() {
 		super();
+		try {
+
+		 fis = new FileInputStream(ameyalli.getInstance().getLenguage());
+		 rb = new PropertyResourceBundle(fis);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		FileInputStream fis;
-		try {
-			 fis = new FileInputStream(ameyalli.getInstance().getLenguage());
-			ResourceBundle  rb = new PropertyResourceBundle(fis);
+			
 			gymBtn.setText(rb.getString("gymBtn"));
 			estBtn.setText(rb.getString("estBtn"));
 			ajustesBtn.setText(rb.getString("ajustesBtn"));
 			tiendaBtn.setText(rb.getString("tiendaBtn"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+	
 	}
 	
 	@FXML 
@@ -66,6 +67,7 @@ public class controllerMenu implements Initializable {
 			e.printStackTrace();
 		}		
 	}
+	
 	@FXML 
 	private void estadisticasInit(){
 		Node estadisticas = null;
