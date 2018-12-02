@@ -67,7 +67,7 @@ public class controllerAgregarCliente implements Initializable {
 	
 	public controllerAgregarCliente() throws IOException {
 		super();
-		FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+		FileInputStream fis = new FileInputStream(ameyalli.getInstance().getLenguage());
 		 rb = new PropertyResourceBundle(fis);
 	}
 
@@ -121,7 +121,7 @@ public class controllerAgregarCliente implements Initializable {
 		HBox listado = null;
 		try {
 			Cliente client = crearCliente();
-			System.out.println(client.toString());
+			client.toString();
 			if(client.getPlan()=="clases")
 				ameyalli.dbConnection.addPlan(client.getPlan(), client.getHora().toString());
 			ameyalli.dbConnection.addPlan(client.getPlan(),null);

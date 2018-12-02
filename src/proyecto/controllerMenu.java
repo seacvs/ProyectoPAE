@@ -31,7 +31,7 @@ public class controllerMenu implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+			 fis = new FileInputStream(ameyalli.getInstance().getLenguage());
 			ResourceBundle  rb = new PropertyResourceBundle(fis);
 			gymBtn.setText(rb.getString("gymBtn"));
 			estBtn.setText(rb.getString("estBtn"));
@@ -78,8 +78,10 @@ public class controllerMenu implements Initializable {
 		}		
 	}
 	@FXML 
-	private void ajustesInit(){
-		System.out.println("change lenguage");
+	private void ajustesInit() throws Exception{
+		System.out.print("change lenguage from : "+ameyalli.strIdioma);
+		ameyalli.getInstance().setLenguage();
+		System.out.println(" to "+ameyalli.strIdioma);
 	}
 	
 	

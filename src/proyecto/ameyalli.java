@@ -28,7 +28,8 @@ public class ameyalli extends Application {
 	private Stage primaryStage = new Stage();
 	private BorderPane pane_root;
 	public static FileInputStream fis;
-	public static String strIdioma ;
+	public static String strIdioma ="es";
+	public static String fileNamei18;
 	
 	public static ameyalli getInstance() {
 		if(instancia==null)
@@ -44,18 +45,24 @@ public class ameyalli extends Application {
 		pane_root.setCenter(node);
 	}
 	
-	public void setLenguage() throws IOException {
+	public void setLenguage() throws Exception {
 		if(strIdioma.equals("en")){
 		 fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
 		 rb = new PropertyResourceBundle(fis);
+		 fileNamei18 = "src/resources/i18n/ameyalli.properties";
 		 strIdioma="es";
 		}else{
 			 fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
 			 rb = new PropertyResourceBundle(fis);
 			 strIdioma="en";
-		}
+			 fileNamei18 = "src/resources/i18n/ameyalli_en.properties";
+		}	
 	}
 	
+	
+	public String getLenguage() {
+		return fileNamei18;
+	}
 	
 	
 	@Override
@@ -63,6 +70,7 @@ public class ameyalli extends Application {
 		super.init();
 		ameyalli.instancia = this;
 		dbConnection = new DBConnection();
+		setLenguage();
 	}
 	
 	public void setScene(Pane node) {
@@ -84,6 +92,8 @@ public class ameyalli extends Application {
 			primaryStage.show();
 		}
 	
+		
+	
 		public void gymLaunch() {
 			HBox listado = null;
 			
@@ -99,8 +109,10 @@ public class ameyalli extends Application {
 		}
 		
 		public static void main(String[] args) throws IOException {
-			 fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
-			 strIdioma="en";
+			 fis = new FileInputStream("src/resources/i18n/ameyalli.properties");
+			 strIdioma="es";
+			 fileNamei18 = "src/resources/i18n/ameyalli.properties";
+
 			 rb = new PropertyResourceBundle(fis);
 			launch(args);
 		}

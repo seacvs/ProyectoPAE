@@ -68,7 +68,7 @@ public class controllerClientes implements Initializable {
 	
 	public controllerClientes() throws IOException {
 		super();
-		FileInputStream fis = new FileInputStream("src/resources/i18n/ameyalli_en.properties");
+		FileInputStream fis = new FileInputStream(ameyalli.getInstance().getLenguage());
 		rb = new PropertyResourceBundle(fis);
 	}
 
