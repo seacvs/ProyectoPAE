@@ -66,6 +66,22 @@ public class Cliente {//Clase cliente la cual se usa para llenar la tabla de cli
 		
 	}
 	
+	public String getFechaFin() {
+		return fechaFin.get();
+	}
+
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin.set(fechaFin);
+	}
+
+	public String getHora() {
+		return hora.get();
+	}
+
+	public void setHora(String hora) {
+		this.hora.set(hora);
+	}
+	
 	public String getEstatus() {
 		return estatus.get();
 	}
