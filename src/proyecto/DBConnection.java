@@ -99,7 +99,7 @@ public class DBConnection {
     protected void addPlan(String planName, String time) {
         int sumDays = 0;
         switch (planName.toLowerCase()) {
-            case "clases":
+            case "clase":
             case "macroplan":
             case "membresia":
                 sumDays = 30;
@@ -107,7 +107,7 @@ public class DBConnection {
             case "visita":
                 sumDays = 1;
                 break;
-            case "becados":
+            case "becado":
                 sumDays = 365;
                 break;
         }
@@ -122,7 +122,7 @@ public class DBConnection {
         Date end = c.getTime();
         SimpleDateFormat formatter2 = new SimpleDateFormat(pattern);
         String endDate = formatter2.format(end);
- 
+
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO plan(id_clase, tipo_plan, fecha_in, fecha_fn, estatus) VALUES((SELECT id_clase FROM clase WHERE hora = ? ), ?, ?, ?, ?)");
             preparedStatement.setString(1, time);
@@ -275,35 +275,14 @@ public class DBConnection {
     }
  
     protected ArrayList<Cliente> getClients() {
-        int resPlanID = 0;
- 
         ArrayList<Cliente> clients = new ArrayList<>();
  
         try {
             Statement st1 = connection.createStatement();
             ResultSet rs1 = st1.executeQuery("SELECT * FROM cliente");
- 
-            while (rs1.next()) {
-                resPlanID = rs1.getInt("id_plan"); // Se pone el indice de la col o el nombre de esta
-                Cliente cliente = new Cliente();
- 
-                cliente.setId(String.valueOf(rs1.getInt("id_cliente")));
-                cliente.setLastname(rs1.getString("apellido"));
-                cliente.setName(rs1.getString("nombre"));
-                cliente.setMail(rs1.getString("mail"));
-                cliente.setFechaNacimiento(rs1.getString("fecha_nac"));
-                cliente.setTelefono(String.valueOf(rs1.getLong("telefono")));
- 
-                Plan plan = getPlan(resPlanID);
-                cliente.setPlan(plan.getPlanType());
-                cliente.setFechaInicio(plan.getStart());
-                cliente.setFechaFin(plan.getEnd());
-                cliente.setEstatus((plan.isStatus() ? "Activo" : "Inactivo"));
-                cliente.setHora(plan.getHour());
- 
-                clients.add(cliente);
-            }
- 
+
+            getClientsFromDatabase(clients, rs1);
+
             st1.close();
             rs1.close();
         } catch (SQLException e) {
@@ -311,42 +290,66 @@ public class DBConnection {
         }
  
         return clients;
- 
     }
- 
-    protected Cliente getClientByName(String firstName, String lastName) {
-        int resPlanID = 0;
- 
-        Cliente cliente = new Cliente();
- 
- 
+
+    protected ArrayList<Cliente> getClientByName(String name) {
+        ArrayList<Cliente> clients = new ArrayList<>();
+
         try {
             Statement st1 = connection.createStatement();
-            ResultSet rs1 = st1.executeQuery("SELECT id_Plan, apellido, nombre, mail, fecha_nac, telefono FROM cliente WHERE apellido = '" + lastName + "' AND nombre = '" + firstName + "' ");
- 
-            while (rs1.next()) {
-                resPlanID = rs1.getInt("id_plan"); // Se pone el indice de la col o el nombre de esta
-                cliente.setLastname(rs1.getString("apellido"));
-                cliente.setName(rs1.getString("nombre"));
-                cliente.setMail(rs1.getString("mail"));
-                cliente.setFechaNacimiento(rs1.getString("fecha_nac"));
-                cliente.setTelefono(String.valueOf(rs1.getLong("telefono")));
-            }
- 
+            ResultSet rs1 = st1.executeQuery("SELECT * FROM cliente WHERE nombre = '" + name + "'");
+
+            getClientsFromDatabase(clients, rs1);
+
             st1.close();
             rs1.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
- 
-        Plan plan = getPlan(resPlanID);
-        cliente.setPlan(plan.getPlanType());
-        cliente.setFechaInicio(plan.getStart());
-        cliente.setFechaFin(plan.getEnd());
-        cliente.setEstatus((plan.isStatus() ? "Activo" : "Inactivo"));
-        cliente.setHora(plan.getHour());
- 
-        return cliente;
+
+        return clients;
+    }
+
+    protected ArrayList<Cliente> getClientByFullName(String firstName, String lastName) {
+        ArrayList<Cliente> clients = new ArrayList<>();
+
+        try {
+            Statement st1 = connection.createStatement();
+            ResultSet rs1 = st1.executeQuery("SELECT * FROM cliente WHERE apellido = '" + lastName + "' AND nombre = '" + firstName + "' ");
+
+            getClientsFromDatabase(clients, rs1);
+
+            st1.close();
+            rs1.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return clients;
+    }
+
+    private void getClientsFromDatabase(ArrayList<Cliente> clients, ResultSet rs1) throws SQLException {
+        int resPlanID;
+        while (rs1.next()) {
+            resPlanID = rs1.getInt("id_plan"); // Se pone el indice de la col o el nombre de esta
+            Cliente cliente = new Cliente();
+
+            cliente.setId(String.valueOf(rs1.getInt("id_cliente")));
+            cliente.setLastname(rs1.getString("apellido"));
+            cliente.setName(rs1.getString("nombre"));
+            cliente.setMail(rs1.getString("mail"));
+            cliente.setFechaNacimiento(rs1.getString("fecha_nac"));
+            cliente.setTelefono(String.valueOf(rs1.getLong("telefono")));
+
+            Plan plan = getPlan(resPlanID);
+            cliente.setPlan(plan.getPlanType());
+            cliente.setFechaInicio(plan.getStart());
+            cliente.setFechaFin(plan.getEnd());
+            cliente.setEstatus((plan.isStatus() ? "Activo" : "Inactivo"));
+            cliente.setHora(plan.getHour());
+
+            clients.add(cliente);
+        }
     }
 
     protected Cliente getClientByID(String id) {

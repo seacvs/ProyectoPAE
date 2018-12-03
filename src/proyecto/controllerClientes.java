@@ -144,7 +144,7 @@ public class controllerClientes implements Initializable {
 
     }
 
-    public String whatSex(String name) {
+    private String whatSex(String name) {
         if (name.substring(name.length() - 1).equals("a")) return "F";
         return "M";
     }
@@ -163,21 +163,12 @@ public class controllerClientes implements Initializable {
                     whatSex(cliente.getName())));
         }
 
-//		final ObservableList<Cliente> data = FXCollections.observableArrayList(
-//			new Cliente ("1","Palomero", "Juan","Activo", "Clase", "Hombre"),
-//			new Cliente ("2","Perez", "Miguel","Inactivo", "Visita", "Hombre"),
-//			new Cliente ("3","Ramirez", "China","Inactivo", "Visita", "Mujer"),
-//			new Cliente ("4","Gonzales", "Sebastian","Activo", "Clase", "Hombre"),
-//			new Cliente ("5","Romeo", "Juan","Activo", "Membresia", "Hombre"),
-//			new Cliente ("6","Kardashan", "Kim","Activo", "Clase", "Mujer")
-//		);
-
-        id_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("id"));
-        apellido_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("lastname"));
-        nombre_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("name"));
-        estatus_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("estatus"));
-        plan_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("plan"));
-        sexo_table.setCellValueFactory(new PropertyValueFactory<Cliente, String>("sexo"));
+        id_table.setCellValueFactory(new PropertyValueFactory<>("id"));
+        apellido_table.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        nombre_table.setCellValueFactory(new PropertyValueFactory<>("name"));
+        estatus_table.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        plan_table.setCellValueFactory(new PropertyValueFactory<>("plan"));
+        sexo_table.setCellValueFactory(new PropertyValueFactory<>("sexo"));
 
         tableView_table.setItems(data);
 
@@ -210,17 +201,53 @@ public class controllerClientes implements Initializable {
         flowPaneDatos.setStyle("-fx-background-color: #FFFFFF");
         hboxBotones.setStyle("-fx-background-color: #FFFFFF");
 
-        nombre_label.setText("China Ramirez");
-        label_mail.setText("china@gmail.com");
-        label_plan.setText("No aplica");
-        label_sexo.setText("Mujer");
-        label_nacimiento.setText("29/11/1988");
-        label_telefono.setText("331220943");
-        label_ff.setText("No aplica");
-        label_fi.setText("No aplica");
-        estatus_label.setText("Inactivo");
+        nombre_label.setText("John Doe");
+        label_mail.setText("john@doe.com");
+        label_plan.setText("");
+        label_sexo.setText("");
+        label_nacimiento.setText("");
+        label_telefono.setText("");
+        label_ff.setText("");
+        label_fi.setText("");
+        estatus_label.setText("");
 
     }
+
+    @FXML
+    private void buscarCliente() {
+        String name = buscar_textField.getText();
+        String[] separated = name.split("\\s+");
+        ArrayList<Cliente> clientes;
+        if (separated.length == 1) {
+            if (separated[0].equals("")) clientes = ameyalli.dbConnection.getClients();
+            else clientes = ameyalli.dbConnection.getClientByName(separated[0]);
+        } else clientes = ameyalli.dbConnection.getClientByFullName(separated[0], separated[1]);
+
+        final ObservableList<Cliente> data = FXCollections.observableArrayList();
+
+        for (Cliente cliente : clientes) {
+            data.add(new Cliente(cliente.getId(), cliente.getLastname(),
+                    cliente.getName(), checkActive(cliente.getFechaFin()), cliente.getPlan(),
+                    whatSex(cliente.getName())));
+        }
+
+        id_table.setCellValueFactory(new PropertyValueFactory<>("id"));
+        apellido_table.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        nombre_table.setCellValueFactory(new PropertyValueFactory<>("name"));
+        estatus_table.setCellValueFactory(new PropertyValueFactory<>("estatus"));
+        plan_table.setCellValueFactory(new PropertyValueFactory<>("plan"));
+        sexo_table.setCellValueFactory(new PropertyValueFactory<>("sexo"));
+
+        tableView_table.setItems(data);
+
+
+//        for (String aSeparated : separated) {
+//            System.out.println(aSeparated);
+//        }
+
+    }
+
+
 
     @FXML
     private void agregarCliente() {
@@ -261,41 +288,47 @@ public class controllerClientes implements Initializable {
             label_sexo.setText(whatSex(cliente.getName()));
             nombre_label.setText(cliente.getName() + " " + cliente.getLastname());
             estatus_label.setText(checkActive(cliente.getFechaFin()));
-            markSchedule(cliente.getHora());
+
+            if (cliente.getPlan().toLowerCase().equals("clase")) {
+                removeSchedule();
+                markSchedule(cliente.getHora());
+            }
+            else removeSchedule();
+
         }
     }
 
     private void markSchedule(String hour) {
         switch (hour) {
-            case "16:00":
+            case "16:00:00":
                 hlu16.setSelected(true);
                 hma16.setSelected(true);
                 hmi16.setSelected(true);
                 hju16.setSelected(true);
                 hvi16.setSelected(true);
                 break;
-            case "17:00":
+            case "17:00:00":
                 hlu17.setSelected(true);
                 hma17.setSelected(true);
                 hmi17.setSelected(true);
                 hju17.setSelected(true);
                 hvi17.setSelected(true);
                 break;
-            case "18:00":
+            case "18:00:00":
                 hlu18.setSelected(true);
                 hma18.setSelected(true);
                 hmi18.setSelected(true);
                 hju18.setSelected(true);
                 hvi18.setSelected(true);
                 break;
-            case "19:00":
+            case "19:00:00":
                 hlu19.setSelected(true);
                 hma19.setSelected(true);
                 hmi19.setSelected(true);
                 hju19.setSelected(true);
                 hvi19.setSelected(true);
                 break;
-            case "20:00":
+            case "20:00:00":
                 hlu20.setSelected(true);
                 hma20.setSelected(true);
                 hmi20.setSelected(true);
@@ -304,6 +337,35 @@ public class controllerClientes implements Initializable {
                 break;
         }
     }
+
+    private void removeSchedule() {
+        hlu16.setSelected(false);
+        hma16.setSelected(false);
+        hmi16.setSelected(false);
+        hju16.setSelected(false);
+        hvi16.setSelected(false);
+        hlu17.setSelected(false);
+        hma17.setSelected(false);
+        hmi17.setSelected(false);
+        hju17.setSelected(false);
+        hvi17.setSelected(false);
+        hlu18.setSelected(false);
+        hma18.setSelected(false);
+        hmi18.setSelected(false);
+        hju18.setSelected(false);
+        hvi18.setSelected(false);
+        hlu19.setSelected(false);
+        hma19.setSelected(false);
+        hmi19.setSelected(false);
+        hju19.setSelected(false);
+        hvi19.setSelected(false);
+        hlu20.setSelected(false);
+        hma20.setSelected(false);
+        hmi20.setSelected(false);
+        hju20.setSelected(false);
+        hvi20.setSelected(false);
+    }
+
 
     private String checkActive(String dayToCompare) {
         Date now = new Date();

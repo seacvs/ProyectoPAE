@@ -33,6 +33,8 @@ public class controllerAgregarCliente implements Initializable {
 	@FXML private TextField text_nc_nombre;
 	@FXML private TextField text_nc_apellido;
 	@FXML private TextField text_nc_id;
+	@FXML private DatePicker text_nc_fi;
+	@FXML private DatePicker text_nc_ff;
 	@FXML private TextField  text_nc_mail;
 	@FXML private RadioButton  checkbox_nc_mujer;
 	@FXML private RadioButton  checkbox_nc_hombre;
@@ -80,10 +82,12 @@ public class controllerAgregarCliente implements Initializable {
 	       SpinnerValueFactory<String> valueFactory = //
 	               new SpinnerValueFactory.ListSpinnerValueFactory<String>(planes);
 	       // Default value
-	       valueFactory.setValue("visita");
+//	       valueFactory.setValue("visita");
 	    spinner_plan.setValueFactory(valueFactory);
 	    
 		apellido_label.setText(rb.getString("apellido_label"));
+		fechaInicio_label.setText(rb.getString("fechaInicio_label"));
+		fechaFin_label.setText(rb.getString("fechaFin_label"));
 		mail_label.setText(rb.getString("mail_label"));
 		sexo_label.setText(rb.getString("sexo_label"));
 		fechaNacimiento_label.setText(rb.getString("nacimiento_label"));
@@ -233,7 +237,7 @@ public class controllerAgregarCliente implements Initializable {
 		String birthDate = text_nc_fechanacimiento.getText(); 
 		String days[] = getDays();
 		int hour = getHours();
-		String hora = "hour"+":00"; 
+		String hora = hour+":00";
 		Cliente escalador = new Cliente(name,lastname,plan,mail,birthDate,phone,startDate,hora); 
 		return escalador;
 	}

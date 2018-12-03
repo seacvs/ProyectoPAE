@@ -11,9 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
 
 public class controllerMenu implements Initializable {
 	
@@ -21,14 +19,13 @@ public class controllerMenu implements Initializable {
 	@FXML private Button estBtn;
 	@FXML private Button ajustesBtn;
 	@FXML private Button tiendaBtn;
-	@FXML private Label lbl_ameyalli;
 	FileInputStream fis;
 	ResourceBundle  rb;
 	
 	public controllerMenu() {
 		super();
 		try {
-				
+
 		 fis = new FileInputStream(ameyalli.getInstance().getLenguage());
 		 rb = new PropertyResourceBundle(fis);
 		} catch (IOException e) {
@@ -39,7 +36,7 @@ public class controllerMenu implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-			lbl_ameyalli.setFont(new Font("Copperplate Gothic Bold",21));
+			
 			gymBtn.setText(rb.getString("gymBtn"));
 			estBtn.setText(rb.getString("estBtn"));
 			ajustesBtn.setText(rb.getString("ajustesBtn"));
@@ -66,7 +63,7 @@ public class controllerMenu implements Initializable {
 								break;
 				case "editar":  editarCliente();
 								break;
-				case "nuevo": agregarCliente();
+				case "agregar": agregarCliente();
 								break;
 				default:  gymInit();
 						break;		
