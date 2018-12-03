@@ -4,18 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import javafx.scene.control.Button ;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
@@ -26,6 +29,7 @@ public class controllerProductos implements Initializable {
 
 	public static ResourceBundle rb;
     public static FileInputStream fis;
+    int cont=1;
     
     public controllerProductos() throws IOException {
         super();
@@ -79,7 +83,12 @@ public class controllerProductos implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+    	ObservableList<String> planes = FXCollections.observableArrayList(//
+	               "Efectivo", "Tarjeta Credito", "Tarjeta Debito");
+		  // Value factory.
+	       SpinnerValueFactory<String> valueFactory = //
+	               new SpinnerValueFactory.ListSpinnerValueFactory<String>(planes);
+	       spinnerFormasDePago.setValueFactory(valueFactory);
         ArrayList<Producto> productos = ameyalli.dbConnection.getAllProducts();
         final ObservableList<Producto> data = FXCollections.observableArrayList();
 
@@ -98,7 +107,7 @@ public class controllerProductos implements Initializable {
         comprar_btn.setText(rb.getString("comprar_btn"));
         cancelar_btn.setText(rb.getString("cancelar_btn"));
         buscar_btn.setText(rb.getString("buscar_btn"));
-        id_table_Tienda.setText(rb.getString("id_table_Tienda"));
+       // id_table_Tienda.setText(rb.getString("id_table_Tienda"));
         name_table.setText(rb.getString("name_table"));
         price_table.setText(rb.getString("price_table"));
         lbl_carroDeCompra.setText(rb.getString("lbl_carroDeCompra"));
@@ -136,11 +145,19 @@ public class controllerProductos implements Initializable {
     }
 
     public void borrar(){
-
+        descripcion_txt.setText("");
+        stock_txt.setText("");
+        precio_txt.setText("");
     }
     
     public void comprar(){
+        String id_Product = tableView_table.getSelectionModel().getSelectedItem().getId_Producto();
+        Producto producto = ameyalli.dbConnection.getDetail(Integer.valueOf(id_Product));
 
+        descripcion_txt.setText(producto.getDescripcion());
+        System.out.println(producto.getDescripcion());
+        stock_txt.setText(String.valueOf(Integer.parseInt(producto.getStock())-cont++));
+        precio_txt.setText(producto.getPrecio());
     }
     @FXML
     public void buscarProducto(){
