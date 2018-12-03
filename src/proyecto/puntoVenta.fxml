@@ -48,7 +48,7 @@
                   </AnchorPane>
                   <AnchorPane id="AP_Productos" layoutX="14.0" layoutY="187.0" prefHeight="426.0" prefWidth="566.0" style="-fx-background-color: #ededed; -fx-background-radius: 8px;" AnchorPane.bottomAnchor="188.0" AnchorPane.rightAnchor="686.0" AnchorPane.topAnchor="187.0">
                      <children>
-                        <Button fx:id="btn_buscar" contentDisplay="RIGHT" layoutX="402.0" layoutY="58.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="62.0" style="-fx-background-color: edf9fc; -fx-background-radius: 8px;" text="Buscar" textAlignment="RIGHT" textFill="#005792" AnchorPane.bottomAnchor="411.0" AnchorPane.leftAnchor="402.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="58.0">
+                        <Button fx:id="btn_buscar" onAction="#buscarProducto" contentDisplay="RIGHT" layoutX="402.0" layoutY="58.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="62.0" style="-fx-background-color: edf9fc; -fx-background-radius: 8px;" text="Buscar" textAlignment="RIGHT" textFill="#005792" AnchorPane.bottomAnchor="411.0" AnchorPane.leftAnchor="402.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="58.0">
                            <font>
                               <Font name="Book Antiqua" size="12.0" />
                            </font>
@@ -56,9 +56,9 @@
                         <TextField fx:id="txt_nombreDeProducto" layoutX="10.0" layoutY="59.0" prefHeight="25.0" prefWidth="388.0" promptText="Nombre de Producto" style="-fx-background-radius: 8px;" />
                         <Line endX="201.0" layoutX="242.0" layoutY="38.0" startX="-198.0" AnchorPane.bottomAnchor="457.5" AnchorPane.leftAnchor="43.5" AnchorPane.rightAnchor="42.5" AnchorPane.topAnchor="37.5" />
                         <Button fx:id="buscar_btn" layoutX="409.0" layoutY="59.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="65.0" styleClass="button-style" text="Buscar" />
-                        <TableView layoutX="14.0" layoutY="99.0" prefHeight="307.0" prefWidth="536.0">
+                        <TableView fx:id="tableView_table" onMouseClicked="#clickItem" layoutX="14.0" layoutY="99.0" prefHeight="307.0" prefWidth="536.0">
                           <columns>
-                            <TableColumn fx:id="id_table" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="id_table_Tienda" prefWidth="75.0" text="ID" />
                             <TableColumn fx:id="name_table" prefWidth="306.0" text="Name" />
                               <TableColumn fx:id="price_table" prefWidth="153.0" text="Precio" />
                           </columns>

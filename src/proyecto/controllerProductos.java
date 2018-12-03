@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  */
 public class controllerProductos implements Initializable {
 
-    public static ResourceBundle rb;
+	public static ResourceBundle rb;
     public static FileInputStream fis;
     
     public controllerProductos() throws IOException {
@@ -50,7 +50,7 @@ public class controllerProductos implements Initializable {
     
     //Tabla
 	@FXML private TableView<Producto> tableView_table;
-    @FXML private TableColumn<Producto,String> id_table;
+    @FXML private TableColumn<Producto,String> id_table_Tienda;
     @FXML private TableColumn<Producto,String> name_table;
     @FXML private TableColumn<Producto,String> price_table;
     @FXML private TextField txt_nombreDeProducto;
@@ -79,17 +79,26 @@ public class controllerProductos implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        final ObservableList<Producto> data = FXCollections.observableArrayList(//Aqui es el select de los productos
-                new Producto(1,1,5, 80.9f, "Arnes"));
 
+        ArrayList<Producto> productos = ameyalli.dbConnection.getAllProducts();
+        final ObservableList<Producto> data = FXCollections.observableArrayList();
 
-        //Select para asignar desde la base de datos (falta)
-        
+        for (Producto producto : productos) {
+            data.add(new Producto(producto.getId_Producto(), producto.getNombre(),
+                    producto.getPrecio()));
+        }
+
+        id_table_Tienda.setCellValueFactory(new PropertyValueFactory<Producto, String>("id_Producto"));
+        name_table.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));
+        price_table.setCellValueFactory(new PropertyValueFactory<Producto, String>("precio"));
+
+        tableView_table.setItems(data);
+
         remove_btn.setText(rb.getString("remove_btn"));
         comprar_btn.setText(rb.getString("comprar_btn"));
         cancelar_btn.setText(rb.getString("cancelar_btn"));
         buscar_btn.setText(rb.getString("buscar_btn"));
-        id_table.setText(rb.getString("id_table"));
+        id_table_Tienda.setText(rb.getString("id_table_Tienda"));
         name_table.setText(rb.getString("name_table"));
         price_table.setText(rb.getString("price_table"));
         lbl_carroDeCompra.setText(rb.getString("lbl_carroDeCompra"));
@@ -112,7 +121,19 @@ public class controllerProductos implements Initializable {
 
     }
 
+    @FXML public void clickItem(MouseEvent event){
+        if (event.getClickCount() == 2)
+        {
+            String id_Product = tableView_table.getSelectionModel().getSelectedItem().getId_Producto();
+            Producto producto = ameyalli.dbConnection.getDetail(Integer.valueOf(id_Product));
 
+            descripcion_txt.setText(producto.getDescripcion());
+            System.out.println(producto.getDescripcion());
+            stock_txt.setText(producto.getStock());
+            precio_txt.setText(producto.getPrecio());
+
+        }
+    }
 
     public void borrar(){
 
@@ -121,6 +142,26 @@ public class controllerProductos implements Initializable {
     public void comprar(){
 
     }
+    @FXML
+    public void buscarProducto(){
+        String nombre = txt_nombreDeProducto.getText();
+        ArrayList<Producto> productos;
+        productos = ameyalli.dbConnection.getList(nombre);
+        final ObservableList<Producto> productoObservableList = FXCollections.observableArrayList();
+
+        for (Producto producto : productos) {
+            productoObservableList.add(new Producto(producto.getId_Producto(), producto.getNombre(),
+                    producto.getPrecio()));
+        }
+
+        id_table_Tienda.setCellValueFactory(new PropertyValueFactory<>("id_Producto"));
+        name_table.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        price_table.setCellValueFactory(new PropertyValueFactory<>("precio"));
+
+        tableView_table.setItems(productoObservableList);
+    }
+    
+    
 
 
 }

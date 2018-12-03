@@ -517,4 +517,80 @@ public class DBConnection {
 		}
 		return results;
 	}
+	protected Producto getDetail(Integer productID){
+        Producto producto = new Producto();
+        String descripcion = null;
+        int stock = 0;
+        double precio = 0.0;
+ 
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(   "SELECT stock, precio, (SELECT descripcion FROM Categoria where id_Categoria ='"+ productID+"') as descripcion " +
+                                                                "FROM Producto " +
+                                                                "WHERE id_Producto = '"+productID+"';");
+ 
+            while(resultSet.next()){
+                stock = resultSet.getInt("stock");
+                precio = resultSet.getDouble("precio");
+                descripcion = resultSet.getString("descripcion");
+            }
+            statement.close();
+            resultSet.close();
+        }catch(SQLException sql){
+            sql.printStackTrace();
+        }return new Producto(1,String.valueOf(stock), String.valueOf(precio), descripcion);
+    }
+ 
+    protected ArrayList<Producto> getList(String nombre){
+ 
+        ArrayList<Producto> productos = new ArrayList<>();
+        int id = 0;
+        double precio = 0.0;
+        try{
+            Producto producto = new Producto();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(   "SELECT id_Producto, nombre, precio " +
+                                                                "FROM Producto " +
+                                                                "where nombre = '"+ nombre+"';");
+ 
+            while(resultSet.next()){
+                producto.setId_Producto(String.valueOf(resultSet.getInt("id_Producto")));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setPrecio(String.valueOf(resultSet.getDouble("precio")));
+                productos.add(producto);
+            }
+            statement.close();
+            resultSet.close();
+        }catch(SQLException sql){
+            sql.printStackTrace();
+        }
+ 
+        return productos;
+    }
+ 
+    protected ArrayList<Producto> getAllProducts(){
+ 
+        ArrayList<Producto> productos = new ArrayList<>();
+        int id = 0;
+        double precio = 0.0;
+        try{
+ 
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(   "SELECT id_Producto, nombre, precio " +
+                                                                "FROM Producto;");
+            while(resultSet.next()){
+                Producto producto = new Producto();
+                producto.setId_Producto(String.valueOf(resultSet.getInt("id_Producto")));
+                producto.setNombre(resultSet.getString("nombre"));
+                producto.setPrecio(String.valueOf(resultSet.getDouble("precio")));
+                productos.add(producto);
+            }
+            statement.close();
+            resultSet.close();
+        }catch(SQLException sql){
+            sql.printStackTrace();
+        }
+ 
+        return productos;
+    }
 }
