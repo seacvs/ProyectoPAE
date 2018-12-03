@@ -104,9 +104,7 @@ public class DBConnection {
 		int sumDays = 0;
 		switch (planName.toLowerCase()) {
 		case "clase":
-			break;
 		case "macroplan":
-			break;
 		case "membresia":
 			sumDays = 30;
 			break;
