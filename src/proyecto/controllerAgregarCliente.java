@@ -86,8 +86,6 @@ public class controllerAgregarCliente implements Initializable {
 	    spinner_plan.setValueFactory(valueFactory);
 	    
 		apellido_label.setText(rb.getString("apellido_label"));
-		fechaInicio_label.setText(rb.getString("fechaInicio_label"));
-		fechaFin_label.setText(rb.getString("fechaFin_label"));
 		mail_label.setText(rb.getString("mail_label"));
 		sexo_label.setText(rb.getString("sexo_label"));
 		fechaNacimiento_label.setText(rb.getString("nacimiento_label"));

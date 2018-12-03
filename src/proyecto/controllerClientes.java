@@ -30,10 +30,7 @@ import javafx.scene.layout.VBox;
 
 public class controllerClientes implements Initializable {
 
-    @FXML
-    private Button editarBtn;
-    @FXML
-    private Button agregarBtn;
+    @FXML private Button agregarBtn;
     @FXML
     private Button buscarBtn;
     @FXML
@@ -113,7 +110,6 @@ public class controllerClientes implements Initializable {
             fis = new FileInputStream(ameyalli.getInstance().getLenguage());
             rb = new PropertyResourceBundle(fis);
             buscarBtn.setText(rb.getString("buscarBtn"));
-            editarBtn.setText(rb.getString("editarBtn"));
             agregarBtn.setText(rb.getString("agregarBtn"));
             buscar_textField.setPromptText(rb.getString("buscar_textField"));
             id_table.setText(rb.getString("id_table"));
@@ -173,7 +169,6 @@ public class controllerClientes implements Initializable {
         tableView_table.setItems(data);
 
         buscarBtn.setText(rb.getString("buscarBtn"));
-        editarBtn.setText(rb.getString("editarBtn"));
         agregarBtn.setText(rb.getString("agregarBtn"));
         buscar_textField.setPromptText(rb.getString("buscar_textField"));
         id_table.setText(rb.getString("id_table"));

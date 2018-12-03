@@ -11,7 +11,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 public class controllerMenu implements Initializable {
 	
@@ -19,6 +21,8 @@ public class controllerMenu implements Initializable {
 	@FXML private Button estBtn;
 	@FXML private Button ajustesBtn;
 	@FXML private Button tiendaBtn;
+	@FXML private Label lbl_ameyalli;
+	
 	FileInputStream fis;
 	ResourceBundle  rb;
 	
@@ -36,12 +40,11 @@ public class controllerMenu implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-			
 			gymBtn.setText(rb.getString("gymBtn"));
 			estBtn.setText(rb.getString("estBtn"));
 			ajustesBtn.setText(rb.getString("ajustesBtn"));
 			tiendaBtn.setText(rb.getString("tiendaBtn"));
-	
+			lbl_ameyalli.setFont(new Font("Copperplate Gothic Bold",22));
 	}
 	
 	
@@ -61,9 +64,9 @@ public class controllerMenu implements Initializable {
 							break;
 				case "tienda": tiendaInit();
 								break;
-				case "editar":  editarCliente();
+				case "nuevo": agregarCliente();
 								break;
-				case "agregar": agregarCliente();
+				case "estadisticas": estadisticasInit();
 								break;
 				default:  gymInit();
 						break;		
@@ -105,22 +108,13 @@ public class controllerMenu implements Initializable {
 		try {
 			estadisticas = FXMLLoader.load(getClass().getResource("estadisticas.fxml"));
 			ameyalli.getInstance().setCenter(estadisticas);
-			
+			ameyalli.getInstance().setTempCenterName("estadisticas");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
 	}
 	
-	private void editarCliente(){
-		HBox editarCliente = null;
-		try {
-			editarCliente = FXMLLoader.load(getClass().getResource("editarCliente.fxml"));
-			ameyalli.getInstance().setCenter(editarCliente);
-			ameyalli.getInstance().setTempCenterName("editar");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-	}
+
 
 	private void agregarCliente(){
 		HBox agregarNuevo = null;

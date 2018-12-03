@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -36,7 +37,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Button fx:id="buscarBtn" mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" styleClass="button-style" text="BUSCAR">
+                              <Button fx:id="buscarBtn" mnemonicParsing="false" onAction="#buscarCliente" prefHeight="37.0" prefWidth="100.0" styleClass="button-style" text="BUSCAR">
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
@@ -69,6 +70,9 @@
                                  <HBox.margin>
                                     <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                                  </HBox.margin>
+                                 <image>
+                                    <Image url="@../../../../../../Mobile/Images/profile_icon.png" />
+                                 </image>
                               </ImageView>
                               <VBox prefHeight="173.0" prefWidth="404.0">
                                  <children>
@@ -517,15 +521,7 @@
                               </FlowPane>
                               <HBox fx:id="hboxBotones">
                                  <children>
-                                    <Button fx:id="editarBtn" mnemonicParsing="false" onAction="#editarCliente" prefHeight="32.0" prefWidth="112.0" styleClass="button-style" text="Editar cliente" translateX="50.0">
-                                       <padding>
-                                          <Insets bottom="5.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" top="2.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button fx:id="agregarBtn" mnemonicParsing="false" onAction="#agregarCliente" prefHeight="32.0" prefWidth="148.0" styleClass="button-style" text="Agregar nuevo cliente" translateX="300.0">
+                                    <Button fx:id="agregarBtn" mnemonicParsing="false" onAction="#agregarCliente" prefHeight="32.0" prefWidth="144.0" styleClass="button-style" text="Agregar nuevo cliente" translateX="500.0">
                                        <padding>
                                           <Insets bottom="5.0" />
                                        </padding>
